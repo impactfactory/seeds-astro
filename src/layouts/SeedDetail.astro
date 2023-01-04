@@ -1,0 +1,113 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image, Picture } from "@astrojs/image/components";
+
+export interface Props {
+  content: {
+    author_firstname?: string;
+    author_lastname?: string;
+    author_img?: string;
+    costs?: string;
+    description?: string;
+    desc_short?: string;
+    environment?: string;
+    img?: string;
+    pubDate?: string;
+    title?: string;
+    updatedDate?: string;
+    heroImage?: string;
+  };
+}
+
+const {
+  content: {
+    title,
+    author_firstname,
+    author_lastname,
+    author_img,
+    costs,
+    description,
+    desc_short,
+    environment,
+    img,
+    pubDate,
+    updatedDate,
+    heroImage,
+  },
+} = Astro.props;
+
+//let imgPath = "src/assets/seeds/" + img;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      .title {
+        font-size: 2em;
+        margin: 0.25em 0 0;
+      }
+      hr {
+        border-top: 1px solid #ddd;
+        margin: 1rem 0;
+      }
+	  .thmb {max-height:100px; max-width:100px}
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <article>
+        <Picture
+          src={"/seeds/" + img}
+          widths={[1280]}
+          aspectRatio="10:4"
+          sizes="(max-width: 1280px) 1280px"
+          formats={["avif", "webp", "jpeg"]}
+          alt={"Keyvisual " + title}
+          class=""
+        />
+        <h1 class="title">{title}</h1>
+        {pubDate && <time>{pubDate}</time>} | {author_firstname}
+        {author_lastname}
+
+		<div class="thmb">
+			<Picture
+          src={"/authors/" + author_img}
+          widths={[100]}
+          aspectRatio="1:1"
+          sizes="(max-width: 100px) 100px"
+          formats={["avif", "webp", "jpeg"]}
+          alt={"Portrait " + author_firstname + ' ' + author_lastname}
+          class="thmb"
+        />
+		</div>
+
+        {
+          updatedDate && (
+            <div>
+              Last updated on <time>{updatedDate}</time>
+            </div>
+          )
+        }
+        <hr />
+        <p>{desc_short}</p>
+       
+        <div>Kosten: {costs} CHF</div>
+        <div>Benötigte Materialien</div>
+		<div>Anleitung</div>
+        <div>Bilder-Gallerie</div>
+        <div>Design-Prinzipien</div>
+        <div>Inspirational</div>
+        <div>Tiere</div>
+        <div>Pflanzen</div>
+        <div>Umgebungen: {environment}</div>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

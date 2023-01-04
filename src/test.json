@@ -1,0 +1,56 @@
+{
+  "page": 1,
+  "perPage": 30,
+  "totalItems": 3,
+  "totalPages": 1,
+  "items": [
+    {
+      "author": "3cvj6te0kukb434",
+      "collectionId": "ityuw4q7kd5lj0s",
+      "collectionName": "seeds",
+      "costs": 0,
+      "created": "2022-12-30 14:25:13.617Z",
+      "desc_long": "",
+      "desc_short": "Klein aber fein: mit einer Badewanne ist ein Biotop für Frösche, mückenfressende Libellen und alle durstigen Tiere im Garten schnell umgesetzt.",
+      "environment": ["Garten", "Balkon"],
+      "id": "917n1k7rh4s417k",
+      "img": "badewannenteich_P0xLnEa7cb.jpg",
+      "name": "Badewannen-Teich für Insekten und Amphibien",
+      "slug": "badewannen-teich",
+      "type": "action",
+      "updated": "2022-12-31 10:11:35.763Z"
+    },
+    {
+      "author": "fefnwc79bw2bke1",
+      "collectionId": "ityuw4q7kd5lj0s",
+      "collectionName": "seeds",
+      "costs": 0,
+      "created": "2022-12-30 14:50:47.140Z",
+      "desc_long": "",
+      "desc_short": "Eine Platte gibt Ameisen ein sicheres Zuhause. Dafür belüften Sie den Boden und helfen, Pflanzenreste zu kompostieren.",
+      "environment": ["Garten"],
+      "id": "3xd6wz2h4u84o7v",
+      "img": "ameisen_beobachtungsstein_13zZnJaQXF.jpg",
+      "name": "Ameisen-Stein",
+      "slug": "ameisen-stein",
+      "type": "action",
+      "updated": "2022-12-31 10:11:22.110Z"
+    },
+    {
+      "author": "7op3jm8nbr5many",
+      "collectionId": "ityuw4q7kd5lj0s",
+      "collectionName": "seeds",
+      "costs": 100,
+      "created": "2022-12-30 14:53:04.619Z",
+      "desc_long": "Igel brauchen wie wir ein Bett, Futter, Netflix und Streicheleinheiten.",
+      "desc_short": "Gib dem unermüdlichen Schneckenfresser ein trockenes Zuhause für den Winter.",
+      "environment": ["Garten"],
+      "id": "kboo9zlqlkg46j0",
+      "img": "igelkorb_qFgi5teXHu.jpeg",
+      "name": "Igel-Haus",
+      "slug": "igel-haus",
+      "type": "action",
+      "updated": "2023-01-04 13:21:55.366Z"
+    }
+  ]
+}

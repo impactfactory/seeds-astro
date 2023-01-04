@@ -1,0 +1,56 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase('http://127.0.0.1:8090');
+
+// you can also fetch all records at once via getFullList
+const seeds = await pb.collection('seeds').getFullList(200, {
+   sort: '-created', expand: 'author',
+});
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			ul {
+				list-style-type: none;
+				padding: unset;
+			}
+			ul li {
+				display: flex;
+			}
+			ul li time {
+				flex: 0 0 130px;
+				font-style: italic;
+				color: #595959;
+			}
+			ul li a:visited {
+				color: #8e32dc;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+       
+		<main>
+			<section>
+				<ul>
+					{ 
+						seeds.map((seed) => (
+							<li><a href="xx">{seed.name}, {seed.expand.author.name}</a> </li>
+						))
+                        }                        
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
