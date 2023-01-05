@@ -5,9 +5,9 @@ import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
 // import pocketbase functionality
-import { getSeeds } from "../config_pocketbase";
+import { getPrinciples } from "../config_pocketbase";
 
-const seeds = await getSeeds();
+const principles = await getPrinciples();
 ---
 
 <!DOCTYPE html>
@@ -35,18 +35,13 @@ const seeds = await getSeeds();
   <body>
     <Header />
     <main>
-      <h1>Seeds</h1>
+      <h1>Design-Prinzipien</h1>
       <section>
         <ul>
           {
-            seeds.map((seed) => (
+            principles.map((principle) => (
               <li>
-                <a href={"/seeds/" + seed.slug}>
-                  {seed.name},{" "}
-                  {seed.expand.author.firstname +
-                    " " +
-                    seed.expand.author.lastname}
-                </a>
+                <a href={"/principles/" + principle.slug}>{principle.name}</a>
               </li>
             ))
           }

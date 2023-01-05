@@ -1,9 +1,9 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../config';
-import { Picture } from '@astrojs/image/components';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../config";
+import { Picture } from "@astrojs/image/components";
 
 // import pocketbase functionality
 import { getSeeds, filePath } from "../../config_pocketbase";
@@ -20,12 +20,14 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {seed: any;}
+interface Props {
+  seed: any;
+}
 
-const { seed } = Astro.props;                    
+const { seed } = Astro.props;
 ---
-  
-  <html lang="en">
+
+<html lang="en">
   <head>
     <BaseHead title={seed.name} description={seed.desc_short} />
     <style>
@@ -37,7 +39,10 @@ const { seed } = Astro.props;
         border-top: 1px solid #ddd;
         margin: 1rem 0;
       }
-	  .thmb {max-height:100px; max-width:100px}
+      .thmb {
+        max-height: 100px;
+        max-width: 100px;
+      }
     </style>
   </head>
 
@@ -45,7 +50,6 @@ const { seed } = Astro.props;
     <Header />
     <main>
       <article>
-
         <Picture
           src={filePath(seed, "img")}
           widths={[1280]}
@@ -54,41 +58,61 @@ const { seed } = Astro.props;
           formats={["avif", "webp", "jpeg"]}
           alt={"Keyvisual " + seed.name}
           class=""
-        /> 
+        />
 
         <h1 class="title">{seed.name}</h1>
 
-       Autor: {seed.expand.author.firstname + ' ' + seed.expand.author.lastname}
-     
+        Autor: <a href={"/authors/" + seed.expand.author.slug}>
+          {seed.expand.author.firstname}
+          {" "}
+          {seed.expand.author.lastname}
+        </a>
+
         <hr />
         <p>{seed.desc_short}</p>
-       
-        <div>Kosten:  {seed.costs} CHF</div>
+
+        <div>Kosten: {seed.costs} CHF</div>
         <div>Benötigte Materialien</div>
-		<div>Anleitung</div>
+        <div>Anleitung</div>
         <div>Bilder-Gallerie</div>
-        <div>Design-Prinzipien: {(seed.expand.principles.map((principle) => (principle.name ))).join(', ')}
-          
+        <div>
+          Design-Prinzipien: {
+            seed.expand.principles.map((principle) => (
+              <a href={"/principles/" + principle.slug}>{principle.name}</a>
+            ))
+          }
         </div>
         <div>Inspirational:</div>
-        <div>Tiere:</div>
-        <div>Pflanzen:</div>
-        <div>Umgebungen: {(seed.expand.environments.map((environment) => (environment.name ))).join(', ')}</div>
+        <div>
+          Tiere: {
+            seed.expand.animals.map((animal) => (
+              <a href={"/animals/" + animal.slug}>{animal.name}</a>
+            ))
+          }
+        </div>
+        <div>
+          Pflanzen: {
+            seed.expand.plants.map((plant) => (
+              <a href={"/plants/" + plant.slug}>{plant.name}</a>
+            ))
+          }
+        </div>
+        <div>
+          Umgebungen: {
+            seed.expand.environments.map((environment) => (
+              <a href={"/environments/" + environment.slug}>
+                {environment.name}
+              </a>
+            ))
+          }
+        </div>
 
         <!--
         <slot />-->
       </article>
     </main>
     <Footer />
-   
 
-  
-
+    {console.log(seed.expand.plants)}
   </body>
-
-{console.log(seed)}
-
 </html>
-
-
-
