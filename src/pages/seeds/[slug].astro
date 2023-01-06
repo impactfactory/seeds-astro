@@ -22,7 +22,13 @@ interface Props {
 const { seed } = Astro.props;
 ---
 
-<Default title={seed.name} desc={seed.desc_short}>
+<Default
+  title={seed.name}
+  desc={seed.desc_short}
+  bc_cat="seeds"
+  bc_catname="Seeds"
+  bc_page={seed.name}
+>
   <div slot="main">
     <article>
       <Picture

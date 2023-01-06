@@ -21,7 +21,13 @@ interface Props {
 const { plant } = Astro.props;
 ---
 
-<Default>
+<Default
+  title={plant.name}
+  desc={plant.desc}
+  bc_cat="plants"
+  bc_catname="Pflanzen"
+  bc_page={plant.name}
+>
   <div slot="main">
     <article>
       <h1 class="title">{plant.name}</h1>

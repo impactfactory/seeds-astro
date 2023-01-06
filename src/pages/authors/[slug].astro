@@ -2,6 +2,7 @@
 import Default from "../../layouts/Default.astro";
 import { getAuthors, filePathAuthors } from "../../config_pocketbase";
 import { Picture } from "@astrojs/image/components";
+import Authors from "../authors.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -22,7 +23,13 @@ interface Props {
 const { author } = Astro.props;
 ---
 
-<Default>
+<Default
+  title={author.name}
+  desc={author.desc}
+  bc_cat="authors"
+  bc_catname="Autoren"
+  bc_page={author.firstname + " " + author.lastname}
+>
   <div slot="main">
     <article>
       <Picture

@@ -21,7 +21,13 @@ interface Props {
 const { principle } = Astro.props;
 ---
 
-<Default>
+<Default
+  title={principle.name}
+  desc={principle.desc}
+  bc_cat="principles"
+  bc_catname="Prinzipien"
+  bc_page={principle.name}
+>
   <div slot="main">
     <article>
       <h1 class="title">{principle.name}</h1>
