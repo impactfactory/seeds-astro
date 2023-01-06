@@ -1,58 +1,24 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
-
-// import pocketbase functionality
+import Default from "../layouts/Default.astro";
 import { getSeeds } from "../config_pocketbase";
 
 const seeds = await getSeeds();
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      ul {
-        list-style-type: none;
-        padding: unset;
+<Default>
+  <div slot="main">
+    <h1>Seeds</h1>
+    <ul>
+      {
+        seeds.map((seed) => (
+          <li>
+            <a href={"/seeds/" + seed.slug}>
+              {seed.name},{" "}
+              {seed.expand.author.firstname + " " + seed.expand.author.lastname}
+            </a>
+          </li>
+        ))
       }
-      ul li {
-        display: flex;
-      }
-      ul li time {
-        flex: 0 0 130px;
-        font-style: italic;
-        color: #595959;
-      }
-      ul li a:visited {
-        color: #8e32dc;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Seeds</h1>
-      <section>
-        <ul>
-          {
-            seeds.map((seed) => (
-              <li>
-                <a href={"/seeds/" + seed.slug}>
-                  {seed.name},{" "}
-                  {seed.expand.author.firstname +
-                    " " +
-                    seed.expand.author.lastname}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </ul>
+  </div>
+</Default>

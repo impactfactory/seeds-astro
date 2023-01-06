@@ -1,0 +1,32 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import Facebook from "../components/Meta/Facebook.astro";
+import Favicons from "../components/Meta/Favicons.astro";
+import Header from "../components/Header.astro";
+import Linkrel from "../components/Meta/Linkrel.astro";
+import Metas from "../components/Meta/Metas.astro";
+import site from "../data/site.json";
+import Twitter from "../components/Meta/Twitter.astro";
+import "../styles/custom.scss";
+---
+
+<!DOCTYPE html>
+<html lang="de-CH">
+  <head>
+    <Metas site={site} />
+    <!--<Preconnect /> -->
+    <Linkrel site={site} />
+    <title>{site.name}</title>
+    <Facebook site={site} />
+    <Twitter site={site} />
+    <Favicons site={site} />
+  </head>
+  <body>
+    <Header />
+    <main class="indent-me">
+      <slot name="main" />
+    </main>
+    <Footer />
+    <slot name="json" />
+  </body>
+</html>

@@ -1,12 +1,7 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../config";
-import { Picture } from "@astrojs/image/components";
-
-// import pocketbase functionality
+import Default from "../../layouts/Default.astro";
 import { getSeeds, filePath } from "../../config_pocketbase";
+import { Picture } from "@astrojs/image/components";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -27,92 +22,65 @@ interface Props {
 const { seed } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={seed.name} description={seed.desc_short} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-      .thmb {
-        max-height: 100px;
-        max-width: 100px;
-      }
-    </style>
-  </head>
+<Default title={seed.name} desc={seed.desc_short}>
+  <div slot="main">
+    <article>
+      <Picture
+        src={filePath(seed, "img")}
+        widths={[1280]}
+        aspectRatio="10:4"
+        sizes="(max-width: 1280px) 1280px"
+        formats={["avif", "webp", "jpeg"]}
+        alt={"Keyvisual " + seed.name}
+        class=""
+      />
 
-  <body>
-    <Header />
-    <main>
-      <article>
-        <Picture
-          src={filePath(seed, "img")}
-          widths={[1280]}
-          aspectRatio="10:4"
-          sizes="(max-width: 1280px) 1280px"
-          formats={["avif", "webp", "jpeg"]}
-          alt={"Keyvisual " + seed.name}
-          class=""
-        />
+      <h1>{seed.name}</h1>
 
-        <h1 class="title">{seed.name}</h1>
+      Autor: <a href={"/authors/" + seed.expand.author.slug}>
+        {seed.expand.author.firstname}
+        {" "}
+        {seed.expand.author.lastname}
+      </a>
 
-        Autor: <a href={"/authors/" + seed.expand.author.slug}>
-          {seed.expand.author.firstname}
-          {" "}
-          {seed.expand.author.lastname}
-        </a>
+      <hr />
+      <p>{seed.desc_short}</p>
 
-        <hr />
-        <p>{seed.desc_short}</p>
+      <div>Kosten: {seed.costs} CHF</div>
+      <div>Benötigte Materialien</div>
+      <div>Anleitung</div>
+      <div>Bilder-Gallerie</div>
+      <div>
+        Design-Prinzipien: {
+          seed.expand.principles.map((principle) => (
+            <a href={"/principles/" + principle.slug}>{principle.name}</a>
+          ))
+        }
+      </div>
+      <div>Inspirational:</div>
+      <div>
+        Tiere: {
+          seed.expand.animals.map((animal) => (
+            <a href={"/animals/" + animal.slug}>{animal.name}</a>
+          ))
+        }
+      </div>
+      <div>
+        Pflanzen: {
+          seed.expand.plants.map((plant) => (
+            <a href={"/plants/" + plant.slug}>{plant.name}</a>
+          ))
+        }
+      </div>
+      <div>
+        Umgebungen: {
+          seed.expand.environments.map((environment) => (
+            <a href={"/environments/" + environment.slug}>{environment.name}</a>
+          ))
+        }
+      </div>
+    </article>
 
-        <div>Kosten: {seed.costs} CHF</div>
-        <div>Benötigte Materialien</div>
-        <div>Anleitung</div>
-        <div>Bilder-Gallerie</div>
-        <div>
-          Design-Prinzipien: {
-            seed.expand.principles.map((principle) => (
-              <a href={"/principles/" + principle.slug}>{principle.name}</a>
-            ))
-          }
-        </div>
-        <div>Inspirational:</div>
-        <div>
-          Tiere: {
-            seed.expand.animals.map((animal) => (
-              <a href={"/animals/" + animal.slug}>{animal.name}</a>
-            ))
-          }
-        </div>
-        <div>
-          Pflanzen: {
-            seed.expand.plants.map((plant) => (
-              <a href={"/plants/" + plant.slug}>{plant.name}</a>
-            ))
-          }
-        </div>
-        <div>
-          Umgebungen: {
-            seed.expand.environments.map((environment) => (
-              <a href={"/environments/" + environment.slug}>
-                {environment.name}
-              </a>
-            ))
-          }
-        </div>
-
-        <!--
-        <slot />-->
-      </article>
-    </main>
-    <Footer />
-
-    {console.log(seed.expand.plants)}
-  </body>
-</html>
+    {/* console.log(seed.expand.plants) */}
+  </div>
+</Default>

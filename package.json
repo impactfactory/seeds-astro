@@ -20,5 +20,8 @@
     "astro": "^1.8.0",
     "pocketbase": "^0.9.1",
     "sharp": "^0.31.3"
+  },
+  "devDependencies": {
+    "sass": "^1.57.1"
   }
 }

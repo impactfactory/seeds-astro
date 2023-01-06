@@ -1,0 +1,12 @@
+---
+const { site } = Astro.props;
+const urlDe = site.url + "/de";
+const urlEn = site.url + "/en";
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<link rel="canonical" href={canonicalURL} />
+<!--
+    <link rel="alternate" hreflang="en" href={urlEn} />
+<link rel="alternate" hreflang="de" href={urlDe} />
+-->

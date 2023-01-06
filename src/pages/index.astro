@@ -1,28 +1,17 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Default from "../layouts/Default.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header title={SITE_TITLE} />
-    <main>
-      <h1>Willkommen</h1>
-      <p>Dies ist eine experimentelle Entwicklungsseite.</p>
-      <h2>Listen</h2>
-      <ul class="li"><a href="seeds">Seeds</a></ul>
-      <ul class="li"><a href="environments">Umgebungen</a></ul>
-      <ul class="li"><a href="plants">Pflanzen</a></ul>
-      <ul class="li"><a href="animals">Tiere</a></ul>
-      <ul class="li"><a href="principles">Design-Prinzipien</a></ul>
-      <ul class="li"><a href="authors">Autoren</a></ul>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Default>
+  <div slot="main">
+    <h1>Willkommen zu Seeds</h1>
+    <p>Dies ist eine experimentelle Entwicklungsseite.</p>
+    <h2>Übersichtsseiten</h2>
+    <ul class="li"><a href="seeds">Seeds</a></ul>
+    <ul class="li"><a href="environments">Umgebungen</a></ul>
+    <ul class="li"><a href="plants">Pflanzen</a></ul>
+    <ul class="li"><a href="animals">Tiere</a></ul>
+    <ul class="li"><a href="principles">Design-Prinzipien</a></ul>
+    <ul class="li"><a href="authors">Autoren</a></ul>
+  </div>
+</Default>

@@ -1,11 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../config";
-import { Picture } from "@astrojs/image/components";
-
-// import pocketbase functionality
+import Default from "../../layouts/Default.astro";
 import { getPrinciples, filePathPrinciples } from "../../config_pocketbase";
 
 // create all the routes with specific detail page props
@@ -27,40 +21,11 @@ interface Props {
 const { principle } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={principle.name} description={principle.desc} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-      .thmb {
-        max-height: 100px;
-        max-width: 100px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <h1 class="title">{principle.name}</h1>
-
-        <hr />
-        <p>{principle.desc}</p>
-
-        <!--
-        <slot />-->
-      </article>
-    </main>
-    <Footer />
-
-    {console.log(principle)}
-  </body>
-</html>
+<Default>
+  <div slot="main">
+    <article>
+      <h1 class="title">{principle.name}</h1>
+      <p>{principle.desc}</p>
+    </article>
+  </div>
+</Default>
