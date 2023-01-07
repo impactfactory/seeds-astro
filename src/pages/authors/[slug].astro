@@ -1,8 +1,7 @@
 ---
 import Default from "../../layouts/Default.astro";
 import { getAuthors, filePathAuthors } from "../../config_pocketbase";
-import { Picture } from "@astrojs/image/components";
-import Authors from "../authors.astro";
+import DetailVisual from "../../components/Elements/DetailVisual.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -32,19 +31,13 @@ const { author } = Astro.props;
 >
   <div slot="main">
     <article>
-      <Picture
-        src={filePathAuthors(author, "img")}
-        widths={[1280]}
-        aspectRatio="10:4"
-        sizes="(max-width: 1280px) 1280px"
-        formats={["avif", "webp", "jpeg"]}
-        alt={"Portrait " + author.firstname + " " + author.lastname}
-        class=""
-      />
-
       <h1 class="title">{author.firstname + " " + author.lastname}</h1>
 
-      <hr />
+      <DetailVisual
+        name={author.firstname + author.lastname}
+        pathfunction={filePathAuthors(author, "img")}
+      />
+
       <p>{author.desc}</p>
 
       <!--

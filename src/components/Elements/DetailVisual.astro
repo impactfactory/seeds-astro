@@ -1,0 +1,22 @@
+---
+import { Picture } from "@astrojs/image/components";
+import site from "../../data/site.json";
+
+const { name, pathfunction } = Astro.props;
+---
+
+<Picture
+  alt={"Keyvisual " + name}
+  aspectRatio="10:4"
+  background="#fff"
+  class="keyvisual"
+  fit="cover"
+  formats={["avif", "webp", "jpeg"]}
+  height="auto"
+  sizes={site.landscapeSizes}
+  src={pathfunction}
+  position="center"
+  width="100%"
+  widths={site.breakpoints}
+  style="width:100%;max-width:100%"
+/>
