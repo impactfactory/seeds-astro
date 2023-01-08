@@ -4,13 +4,7 @@ import { baseUrl } from "../../config_pocketbase";
 const { step } = Astro.props;
 
 const file =
-  baseUrl +
-  "/api/files/" +
-  step.collectionId +
-  "/" +
-  step.id +
-  "/" +
-  step.title;
+  baseUrl + "/api/files/" + step.collectionId + "/" + step.id + "/" + step.img;
 ---
 
 <div class="steps">
@@ -22,17 +16,17 @@ const file =
           {step.title}
         </h4>
         <Picture
-          alt={"Thumbnail" + step.title}
+          alt={"Thumbnail " + step.title}
           aspectRatio="1:1"
           background="#fff"
           class="thumbnail"
           fit="cover"
           formats={["avif", "webp", "jpeg"]}
-          height="auto"
+          height="100px"
           sizes={"(max-width: 1400px) 100px,100px"}
           src={file}
           position="center"
-          width="100%"
+          width="100px"
           widths={[100, 200]}
           style="width:100px;max-width:100px"
         />

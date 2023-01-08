@@ -23,7 +23,7 @@ export const getAuthors = async () => {
 };
 
 export const filePathAuthors = (author: any, firstname: string) =>
-  `${baseUrl}/api/files/${author.collectionId}/${author.id}/${author[firstname]}`;
+  `${baseUrl}/api/files/${author.collectionId}/${author.id}/${author.img}`;
 
 // Calls for Environments
 export const getEnvironments = async () => {
