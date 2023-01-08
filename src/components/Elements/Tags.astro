@@ -2,10 +2,10 @@
 const { label, url } = Astro.props;
 ---
 
-<a href={url}>{label}</a>
+<a href={url} class="tags">{label}</a>
 
 <style>
-  a {
+  .tags {
     background: hsl(var(--tec-lgt));
     color: var(--dark);
     border-radius: var(--btn-radius);
@@ -17,7 +17,7 @@ const { label, url } = Astro.props;
     text-transform: uppercase;
   }
 
-  a:hover {
+  .tags:hover {
     background: hsl(var(--tec));
     color: hsl(var(--light));
   }

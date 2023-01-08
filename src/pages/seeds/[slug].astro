@@ -1,8 +1,11 @@
 ---
+import AuthorThumb from "../../components/Elements/AuthorThumb.astro";
 import Default from "../../layouts/Default.astro";
 import DetailVisual from "../../components/Elements/DetailVisual.astro";
-import { getSeeds, filePath } from "../../config_pocketbase";
+import { getSeeds, filePath, filePathAuthors } from "../../config_pocketbase";
+import HowTo from "../../components/SeedDetail/HowTo.astro";
 import Tags from "../../components/Elements/Tags.astro";
+import Gallery from "../../components/SeedDetail/Gallery.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -36,25 +39,33 @@ const { seed } = Astro.props;
 
       <DetailVisual name={seed.name} pathfunction={filePath(seed, "img")} />
 
-      Autor: <a href={"/authors/" + seed.expand.author.slug}>
-        {seed.expand.author.firstname}
-        {" "}
-        {seed.expand.author.lastname}
-      </a>
+      <AuthorThumb
+        author={seed.expand.author}
+        pathfunction={filePathAuthors(seed.expand.author, "img")}
+      />
 
-      <hr />
-      <p>{seed.desc_short}</p>
+      <p class="desc_short">{seed.desc_short}</p>
 
-      <div>Kosten: {seed.costs} CHF</div>
-      <div>Benötigte Materialien</div>
-      <div>Anleitung</div>
-      <div>Bilder-Gallerie</div>
-      <div>
-        Inspirational: Wusstest Du, dass Du einen Teich zur Wärmereflektion
-        nutzen kannst? Warum nicht Aprikosen pflanzen hinter dem Teich?
-      </div>
+      <HowTo
+        steps={seed.steps}
+        costs={seed.costs}
+        time={seed.time}
+        materials={seed.materials}
+        tools={seed.tools}
+      />
 
-      <section class="tags">
+      <Gallery images={seed.gallery} />
+
+      <section>
+        <hr />
+        <p class="inspirational">
+          Wusstest Du, dass Du einen Teich zur Wärmereflektion nutzen kannst?
+          Warum nicht mal Aprikosen pflanzen hinter dem Teich?
+        </p>
+        <hr />
+      </section>
+
+      <section class="taglist">
         {
           seed.expand.principles.map((principle) => (
             <Tags
@@ -81,3 +92,17 @@ const { seed } = Astro.props;
     {/* console.log(seed.expand.plants) */}
   </div>
 </Default>
+
+<style>
+  .desc_short {
+    font-weight: var(--fw-lg);
+    padding: var(--padd-md) 0 var(--padd-md) 0;
+  }
+
+  .inspirational {
+    font-style: italic;
+  }
+  .taglist {
+    padding: var(--padd-md) 0 0 0;
+  }
+</style>

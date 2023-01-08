@@ -26,8 +26,8 @@ const { bc_cat, bc_catname, bc_page, desc, title } = Astro.props;
   </head>
   <body>
     <Header />
-    <Breadcrumbs cat={bc_cat} cat_name={bc_catname} page_name={bc_page} />
     <main class="indent-me">
+      <Breadcrumbs cat={bc_cat} cat_name={bc_catname} page_name={bc_page} />
       <slot name="main" />
     </main>
     <Footer />
