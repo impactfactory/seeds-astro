@@ -1,7 +1,7 @@
 // Project Config
 import PocketBase from "pocketbase";
 
-const baseUrl = "http://127.0.0.1:8090";
+export const baseUrl = "http://127.0.0.1:8090";
 
 export const pb = new PocketBase(baseUrl);
 
@@ -57,12 +57,16 @@ export const filePathPrinciples = (principle: any, name: string) =>
 
 // Calls for Seeds
 export const getSeeds = async () => {
-  //return await pb.collection("seeds").getFullList(); // Sascha's Line
   return await pb.collection("seeds").getFullList(200, {
     sort: "-created",
-    expand: "animals, author, environments, plants, principles",
+    expand:
+      "animals, author, environments, plants, principles, steps, steps.subs",
   });
 };
 
 export const filePath = (seed: any, name: string) =>
   `${baseUrl}/api/files/${seed.collectionId}/${seed.id}/${seed[name]}`;
+
+//Calls for Steps
+export const filePathSteps = (step: any, title: string) =>
+  `${baseUrl}/api/files/${step.collectionId}/${step.id}/${step[title]}`;

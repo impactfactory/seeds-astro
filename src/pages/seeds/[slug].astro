@@ -47,7 +47,7 @@ const { seed } = Astro.props;
       <p class="desc_short">{seed.desc_short}</p>
 
       <HowTo
-        steps={seed.steps}
+        steps={seed.expand.steps}
         costs={seed.costs}
         time={seed.time}
         materials={seed.materials}

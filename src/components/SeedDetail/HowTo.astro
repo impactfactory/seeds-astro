@@ -1,6 +1,7 @@
 ---
-import Picture from "@astrojs/image/components/Picture.astro";
 import { Icon } from "astro-icon";
+//import { filePathSteps } from "../../config_pocketbase";
+import Steps from "./Steps.astro";
 
 const { costs, materials, steps, time, tools } = Astro.props;
 ---
@@ -36,37 +37,8 @@ const { costs, materials, steps, time, tools } = Astro.props;
   </div>
   <div class="steps">
     <h3>Schritte</h3>
-    {JSON.stringify(steps, null, 2)}
-    <div class="steps">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item py-4" id="x">
-          <div class="row">
-            <div class="col-2">
-              <picture>
-                <img
-                  type="image/jpg"
-                  src="/xx"
-                  alt=""
-                  width="100"
-                  height="100"
-                  class="rounded"
-                />
-              </picture>
-            </div>
-            <div class="col-10">
-              <h3 class="h5 pt-0">
-                <span class="step-index">1</span>Unterschritt Titel
-              </h3>
-              <ul class="substeps">
-                <li>Unterschritt Text</li>
-              </ul>
-            </div>
-          </div>
-        </li>
 
-        <ul></ul>
-      </ul>
-    </div>
+    {steps.map((step) => <Steps step={step} />)}
   </div>
 </section>
 

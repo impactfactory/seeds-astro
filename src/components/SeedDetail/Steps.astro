@@ -1,0 +1,52 @@
+---
+import { Picture } from "@astrojs/image/components";
+import { baseUrl } from "../../config_pocketbase";
+const { step } = Astro.props;
+
+const file =
+  baseUrl +
+  "/api/files/" +
+  step.collectionId +
+  "/" +
+  step.id +
+  "/" +
+  step.title;
+---
+
+<div class="steps">
+  <ul class="">
+    <li class="list-group-item py-4" id="x">
+      <div class=""></div>
+      <div class="col-10">
+        <h4>
+          {step.title}
+        </h4>
+        <Picture
+          alt={"Thumbnail" + step.title}
+          aspectRatio="1:1"
+          background="#fff"
+          class="thumbnail"
+          fit="cover"
+          formats={["avif", "webp", "jpeg"]}
+          height="auto"
+          sizes={"(max-width: 1400px) 100px,100px"}
+          src={file}
+          position="center"
+          width="100%"
+          widths={[100, 200]}
+          style="width:100px;max-width:100px"
+        />
+        <p>{step.desc}</p>
+        <ul class="substeps">
+          {step.expand.subs.map((sub) => <li>{sub.desc}</li>)}
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!--  
+
+    path: 
+http %3A %2F %2F 127.0.0.1 %3A8090 %2F api %2F files prpbacw2ivafp0m %2F 74agp9shl2yk9ld %2F Standort+finden
+-->
