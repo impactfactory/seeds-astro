@@ -13,6 +13,7 @@ body {
   color: var(--body-color);
 
   a {
+    color: hsl(var(--prim));
     text-decoration: none;
   }
 }

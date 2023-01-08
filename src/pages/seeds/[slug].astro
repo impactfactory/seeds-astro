@@ -2,6 +2,7 @@
 import Default from "../../layouts/Default.astro";
 import DetailVisual from "../../components/Elements/DetailVisual.astro";
 import { getSeeds, filePath } from "../../config_pocketbase";
+import Tags from "../../components/Elements/Tags.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -49,34 +50,32 @@ const { seed } = Astro.props;
       <div>Anleitung</div>
       <div>Bilder-Gallerie</div>
       <div>
-        Design-Prinzipien: {
+        Inspirational: Wusstest Du, dass Du einen Teich zur Wärmereflektion
+        nutzen kannst? Warum nicht Aprikosen pflanzen hinter dem Teich?
+      </div>
+
+      <section class="tags">
+        {
           seed.expand.principles.map((principle) => (
-            <a href={"/principles/" + principle.slug}>{principle.name}</a>
+            <Tags
+              label={principle.name}
+              url={"/principles/" + principle.slug}
+            />
           ))
-        }
-      </div>
-      <div>Inspirational:</div>
-      <div>
-        Tiere: {
+        }{
           seed.expand.animals.map((animal) => (
-            <a href={"/animals/" + animal.slug}>{animal.name}</a>
+            <Tags label={animal.name} url={"/animals/" + animal.slug} />
           ))
-        }
-      </div>
-      <div>
-        Pflanzen: {
+        }{
           seed.expand.plants.map((plant) => (
-            <a href={"/plants/" + plant.slug}>{plant.name}</a>
+            <Tags label={plant.name} url={"/plants/" + plant.slug} />
+          ))
+        }{
+          seed.expand.environments.map((env) => (
+            <Tags label={env.name} url={"/environments/" + env.slug} />
           ))
         }
-      </div>
-      <div>
-        Umgebungen: {
-          seed.expand.environments.map((environment) => (
-            <a href={"/environments/" + environment.slug}>{environment.name}</a>
-          ))
-        }
-      </div>
+      </section>
     </article>
 
     {/* console.log(seed.expand.plants) */}

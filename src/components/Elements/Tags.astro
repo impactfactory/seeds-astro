@@ -1,0 +1,24 @@
+---
+const { label, url } = Astro.props;
+---
+
+<a href={url}>{label}</a>
+
+<style>
+  a {
+    background: hsl(var(--tec-lgt));
+    color: var(--dark);
+    border-radius: var(--btn-radius);
+    display: inline-block;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-lg);
+    margin: var(--padd-xs) var(--padd-xs) var(--padd-xs) 0;
+    padding: var(--padd-sm);
+    text-transform: uppercase;
+  }
+
+  a:hover {
+    background: hsl(var(--tec));
+    color: hsl(var(--light));
+  }
+</style>
