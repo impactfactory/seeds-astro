@@ -1,7 +1,7 @@
 ---
 import { Picture } from "@astrojs/image/components";
 import { baseUrl } from "../../config_pocketbase";
-const { step } = Astro.props;
+const { step, index } = Astro.props;
 
 const file =
   baseUrl + "/api/files/" + step.collectionId + "/" + step.id + "/" + step.img;
@@ -11,25 +11,31 @@ const file =
   <ul class="firstlevel">
     <li>
       <h4>
-        {step.title}
+        {index + 1 + ": " + step.title}
       </h4>
       <div class="body">
         <div class="img">
-          <Picture
-            alt={"Thumbnail " + step.title}
-            aspectRatio="1:1"
-            background="#fff"
-            class="thumbnail"
-            fit="cover"
-            formats={["avif", "webp", "jpeg"]}
-            height="100px"
-            sizes={"(max-width: 1400px) 100px,100px"}
-            src={file}
-            position="center"
-            width="100px"
-            widths={[100, 200]}
-            style="width:100px;max-width:100px"
-          />
+          {
+            step.img ? (
+              <Picture
+                alt={"Thumbnail " + step.title}
+                aspectRatio="1:1"
+                background="#fff"
+                class="thumbnail"
+                fit="cover"
+                formats={["avif", "webp", "jpeg"]}
+                height="100px"
+                sizes={"(max-width: 1400px) 100px,100px"}
+                src={file}
+                position="center"
+                width="100px"
+                widths={[100, 200]}
+                style="width:100px;max-width:100px"
+              />
+            ) : (
+              ""
+            )
+          }
         </div>
         <div class="desc">
           <p>{step.desc}</p>

@@ -23,7 +23,7 @@ const { costs, materials, steps, time, tools } = Astro.props;
       </li>
 
       <li>
-        <Icon name="mdi:cash" />
+        <Icon name="mdi:wallet" />
         Kosten:
         {costs} CHF
       </li>
@@ -38,7 +38,7 @@ const { costs, materials, steps, time, tools } = Astro.props;
   <div class="steps">
     <h3>Schritte</h3>
 
-    {steps.map((step) => <Steps step={step} />)}
+    {steps.map((step, index) => <Steps step={step} index={index} />)}
   </div>
 </section>
 
