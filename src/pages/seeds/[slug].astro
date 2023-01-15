@@ -1,12 +1,13 @@
 ---
 import AuthorThumb from "../../components/Elements/AuthorThumb.astro";
 import Default from "../../layouts/Default.astro";
+import DescShort from "../../components/SeedDetail/DescShort.astro";
 import DetailVisual from "../../components/Elements/DetailVisual.astro";
 import { getSeeds, filePath, filePathAuthors } from "../../config_pocketbase";
-import HowTo from "../../components/SeedDetail/HowTo.astro";
-import Tags from "../../components/Elements/Tags.astro";
 import Gallery from "../../components/SeedDetail/Gallery.astro";
+import HowTo from "../../components/SeedDetail/HowTo.astro";
 import Inspirational from "../../components/SeedDetail/Inspirational.astro";
+import TagsList from "../../components/SeedDetail/TagsList.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -38,24 +39,40 @@ const { seed } = Astro.props;
     <article class="seeddetail">
       <h1>{seed.name}</h1>
 
-      <DetailVisual name={seed.name} pathfunction={filePath(seed, "img")} />
+      {
+        seed.img ? (
+          <>
+            <DetailVisual
+              name={seed.name}
+              pathfunction={filePath(seed, "img")}
+            />
+            <AuthorThumb
+              author={seed.expand.author}
+              pathfunction={filePathAuthors(seed.expand.author, "img")}
+            />
+          </>
+        ) : (
+          ""
+        )
+      }
 
-      <AuthorThumb
-        author={seed.expand.author}
-        pathfunction={filePathAuthors(seed.expand.author, "img")}
-      />
+      {seed.desc_short != "" ? <DescShort desc={seed.desc_short} /> : ""}
 
-      <p class="desc_short">{seed.desc_short}</p>
+      {
+        seed.steps.length ? (
+          <HowTo
+            steps={seed.expand.steps}
+            costs={seed.costs}
+            time={seed.time}
+            materials={seed.materials}
+            tools={seed.tools}
+          />
+        ) : (
+          ""
+        )
+      }
 
-      <HowTo
-        steps={seed.expand.steps}
-        costs={seed.costs}
-        time={seed.time}
-        materials={seed.materials}
-        tools={seed.tools}
-      />
-
-      {seed.gallery != "" ? <Gallery images={seed.gallery} seed={seed} /> : ""}
+      {seed.gallery.length ? <Gallery images={seed.gallery} seed={seed} /> : ""}
 
       {
         seed.inspirational != "" ? (
@@ -64,42 +81,16 @@ const { seed } = Astro.props;
           ""
         )
       }
-
-      <section class="taglist">
-        {
-          seed.expand.principles.map((principle) => (
-            <Tags
-              label={principle.name}
-              url={"/principles/" + principle.slug}
-            />
-          ))
-        }{
-          seed.expand.animals.map((animal) => (
-            <Tags label={animal.name} url={"/animals/" + animal.slug} />
-          ))
-        }{
-          seed.expand.plants.map((plant) => (
-            <Tags label={plant.name} url={"/plants/" + plant.slug} />
-          ))
-        }{
-          seed.expand.environments.map((env) => (
-            <Tags label={env.name} url={"/environments/" + env.slug} />
-          ))
-        }
-      </section>
+      {
+        seed.animals.length ||
+        seed.environments.length ||
+        seed.plants.length ||
+        seed.principles.length ? (
+          <TagsList seed={seed} />
+        ) : (
+          ""
+        )
+      }
     </article>
-
-    {/* console.log(seed.expand.plants) */}
   </div>
 </Default>
-
-<style>
-  .desc_short {
-    font-weight: var(--fw-lg);
-    padding: var(--padd-md) 0 var(--padd-md) 0;
-  }
-
-  .taglist {
-    padding: var(--padd-md) 0 0 0;
-  }
-</style>

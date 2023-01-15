@@ -1,0 +1,39 @@
+---
+import Tags from "../Elements/Tags.astro";
+
+const { seed } = Astro.props;
+---
+
+<section class="taglist">
+  {
+    seed.principles.length
+      ? seed.expand.principles.map((principle: any) => (
+          <Tags label={principle.name} url={"/principles/" + principle.slug} />
+        ))
+      : ""
+  }{
+    seed.animals.length
+      ? seed.expand.animals.map((animal: any) => (
+          <Tags label={animal.name} url={"/animals/" + animal.slug} />
+        ))
+      : ""
+  }{
+    seed.plants.length
+      ? seed.expand.plants.map((plant: any) => (
+          <Tags label={plant.name} url={"/plants/" + plant.slug} />
+        ))
+      : ""
+  }{
+    seed.environments.length
+      ? seed.expand.environments.map((env: any) => (
+          <Tags label={env.name} url={"/environments/" + env.slug} />
+        ))
+      : ""
+  }
+</section>
+
+<style>
+  .taglist {
+    padding: var(--padd-md) 0 0 0;
+  }
+</style>
