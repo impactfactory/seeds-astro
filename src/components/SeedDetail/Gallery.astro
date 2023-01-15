@@ -1,6 +1,41 @@
 ---
+import { Picture } from "@astrojs/image/components";
+import { baseUrl } from "../../config_pocketbase";
+
+const { images, seed } = Astro.props;
+
+const src = baseUrl + "/api/files/" + seed.collectionId + "/" + seed.id + "/";
 ---
 
 <section class="gallery">
-  <h2>Bilder</h2>
+  <h2>Impressionen</h2>
+  <div class="images">
+    {
+      images.map((image) => (
+        <div class="img">
+          <Picture
+            alt="Thumbnail"
+            aspectRatio="1:1"
+            formats={["avif", "webp", "jpeg"]}
+            sizes={"(max-width: 3000px) 100px,100px"}
+            src={src + image}
+            widths={[100, 200]}
+          />
+        </div>
+      ))
+    }
+  </div>
 </section>
+
+<style>
+  .images {
+    display: flex;
+    padding: var(--padd-md) 0 0 0;
+  }
+
+  .img {
+    aspect-ration: 1 / 1;
+    padding: 0 var(--padd-md) 0 0;
+    width: 135px;
+  }
+</style>

@@ -7,40 +7,73 @@ const file =
   baseUrl + "/api/files/" + step.collectionId + "/" + step.id + "/" + step.img;
 ---
 
-<div class="steps">
-  <ul class="">
-    <li class="list-group-item py-4" id="x">
-      <div class=""></div>
-      <div class="col-10">
-        <h4>
-          {step.title}
-        </h4>
-        <Picture
-          alt={"Thumbnail " + step.title}
-          aspectRatio="1:1"
-          background="#fff"
-          class="thumbnail"
-          fit="cover"
-          formats={["avif", "webp", "jpeg"]}
-          height="100px"
-          sizes={"(max-width: 1400px) 100px,100px"}
-          src={file}
-          position="center"
-          width="100px"
-          widths={[100, 200]}
-          style="width:100px;max-width:100px"
-        />
-        <p>{step.desc}</p>
-        <ul class="substeps">
-          {step.expand.subs.map((sub) => <li>{sub.desc}</li>)}
-        </ul>
+<div>
+  <ul class="firstlevel">
+    <li>
+      <h4>
+        {step.title}
+      </h4>
+      <div class="body">
+        <div class="img">
+          <Picture
+            alt={"Thumbnail " + step.title}
+            aspectRatio="1:1"
+            background="#fff"
+            class="thumbnail"
+            fit="cover"
+            formats={["avif", "webp", "jpeg"]}
+            height="100px"
+            sizes={"(max-width: 1400px) 100px,100px"}
+            src={file}
+            position="center"
+            width="100px"
+            widths={[100, 200]}
+            style="width:100px;max-width:100px"
+          />
+        </div>
+        <div class="desc">
+          <p>{step.desc}</p>
+          <ul class="secondlevel">
+            {step.expand.subs.map((sub) => <li>{sub.desc}</li>)}
+          </ul>
+        </div>
       </div>
     </li>
   </ul>
 </div>
 
-<!--  
+<style>
+  .firstlevel {
+    margin: 0;
+    padding: 0;
+  }
+  .firstlevel li {
+    display: grid;
+    grid-template-rows: [h4] 2.7rem [body] auto;
+  }
 
-    path: 
-http %3A %2F %2F 127.0.0.1 %3A8090 %2F api %2F files prpbacw2ivafp0m %2F 74agp9shl2yk9ld %2F Standort+finden
--->
+  h4 {
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: 160px auto;
+  }
+
+  .img {
+    aspect-ration: 1 / 1;
+    padding: var(--padd-md) var(--padd-lg) 0 0;
+  }
+
+  .desc {
+  }
+
+  .secondlevel {
+    padding: var(--padd-md) 0 0 var(--padd-lg);
+  }
+
+  .secondlevel li {
+    display: list-item;
+    list-style-type: disc;
+  }
+</style>

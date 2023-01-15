@@ -84,7 +84,7 @@ h3 {
   font-size: calc(0.9 * var(--scale) * 1rem);
 }
 h4 {
-  font-size: calc(var(--scale) / 1.414 * 1rem);
+  font-size: var(--fs-md);
 }
 h5 {
   font-size: calc(var(--scale) / 3 * 1rem);

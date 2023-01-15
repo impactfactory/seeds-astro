@@ -10,27 +10,27 @@ const { costs, materials, steps, time, tools } = Astro.props;
   <h2>Anleitung</h2>
 
   <div class="prep">
-    <ul class="list-group list-group-flush">
+    <ul class="">
       <h3>Vorbereitung</h3>
-      <li class="list-group-item">
+      <li>
         <Icon name="mdi:book-check-outline" />
-        <b>Benötigte Materialien:</b>: {materials}
+        Benötigte Materialien: {materials}
       </li>
-      <li class="list-group-item">
+      <li>
         <Icon name="mdi:tools" />
-        <b>Benötigte Werkzeuge:</b>
+        Benötigte Werkzeuge:
         {tools}
       </li>
 
-      <li class="list-group-item">
+      <li>
         <Icon name="mdi:cash" />
-        <b>Kosten:</b>
+        Kosten:
         {costs} CHF
       </li>
 
-      <li class="list-group-item">
+      <li>
         <Icon name="mdi:clock-time-eight" />
-        <b>Benötigte Zeit:</b>
+        Benötigte Zeit:
         {time} Stunden
       </li>
     </ul>
@@ -47,5 +47,18 @@ const { costs, materials, steps, time, tools } = Astro.props;
     height: 20px;
     transform: translateY(0.25rem);
     width: 20px;
+  }
+
+  h3 {
+    padding: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    font-weight: var(--fw-xl);
   }
 </style>

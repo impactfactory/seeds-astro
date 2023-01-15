@@ -34,7 +34,7 @@ const { seed } = Astro.props;
   bc_page={seed.name}
 >
   <div slot="main">
-    <article>
+    <article class="seeddetail">
       <h1>{seed.name}</h1>
 
       <DetailVisual name={seed.name} pathfunction={filePath(seed, "img")} />
@@ -54,7 +54,7 @@ const { seed } = Astro.props;
         tools={seed.tools}
       />
 
-      <Gallery images={seed.gallery} />
+      <Gallery images={seed.gallery} seed={seed} />
 
       <section>
         <hr />
