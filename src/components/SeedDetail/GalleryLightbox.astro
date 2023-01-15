@@ -1,0 +1,47 @@
+---
+import { Picture } from "@astrojs/image/components";
+import { Icon } from "astro-icon";
+import { baseUrl } from "../../config_pocketbase";
+const { images, image, seed, index } = Astro.props;
+
+const src = baseUrl + "/api/files/" + seed.collectionId + "/" + seed.id + "/";
+---
+
+<div class="lb-overlay" id={"overlay-" + index}>
+  <div class="controls">
+    <a
+      href={index == 0
+        ? "#overlay-" + (images.length - 1)
+        : "#overlay-" + (index - 1)}
+      ><Icon name="mdi:chevron-left" />
+    </a>
+    <a
+      href={images.length == index + 1
+        ? "#overlay-0"
+        : "#overlay-" + (index + 1)}
+      ><Icon name="mdi:chevron-right" />
+    </a>
+    <a href="#gallery"><Icon name="mdi:window-close" /></a>
+  </div>
+
+  <Picture
+    alt="Foto"
+    aspectRatio="10:4"
+    formats={["avif", "webp", "jpeg"]}
+    sizes={"(max-width: 3000px) 1000px,2000px"}
+    src={src + image}
+    widths={[1000, 2000]}
+  />
+
+  <div class="info">Beschreibung, was man genau sieht</div>
+</div>
+
+<style>
+  .controls a {
+    color: white;
+  }
+
+  svg {
+    width: 40px;
+  }
+</style>

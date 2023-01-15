@@ -1,30 +1,40 @@
 ---
 import { Picture } from "@astrojs/image/components";
 import { baseUrl } from "../../config_pocketbase";
+import GalleryLightbox from "./GalleryLightbox.astro";
 
 const { images, seed } = Astro.props;
+const { numberOfImages } = images.length;
 
 const src = baseUrl + "/api/files/" + seed.collectionId + "/" + seed.id + "/";
 ---
 
-<section class="gallery">
+<section class="gallery" id="gallery">
   <h2>Impressionen</h2>
-  <div class="images">
+  <ul class="lb-album">
     {
-      images.map((image) => (
-        <div class="img">
-          <Picture
-            alt="Thumbnail"
-            aspectRatio="1:1"
-            formats={["avif", "webp", "jpeg"]}
-            sizes={"(max-width: 3000px) 100px,100px"}
-            src={src + image}
-            widths={[100, 200]}
+      images.map((image: string, index) => (
+        <li class="img">
+          <a href={"#overlay-" + index}>
+            <Picture
+              alt="Thumbnail"
+              aspectRatio="1:1"
+              formats={["avif", "webp", "jpeg"]}
+              sizes={"(max-width: 3000px) 100px,100px"}
+              src={src + image}
+              widths={[100, 200]}
+            />
+          </a>
+          <GalleryLightbox
+            images={images}
+            image={image}
+            seed={seed}
+            index={index}
           />
-        </div>
+        </li>
       ))
     }
-  </div>
+  </ul>
 </section>
 
 <style>

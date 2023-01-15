@@ -6,6 +6,7 @@ import { getSeeds, filePath, filePathAuthors } from "../../config_pocketbase";
 import HowTo from "../../components/SeedDetail/HowTo.astro";
 import Tags from "../../components/Elements/Tags.astro";
 import Gallery from "../../components/SeedDetail/Gallery.astro";
+import Inspirational from "../../components/SeedDetail/Inspirational.astro";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -54,16 +55,15 @@ const { seed } = Astro.props;
         tools={seed.tools}
       />
 
-      <Gallery images={seed.gallery} seed={seed} />
+      {seed.gallery != "" ? <Gallery images={seed.gallery} seed={seed} /> : ""}
 
-      <section>
-        <hr />
-        <p class="inspirational">
-          Wusstest Du, dass Du einen Teich zur Wärmereflektion nutzen kannst?
-          Warum nicht mal Aprikosen pflanzen hinter dem Teich?
-        </p>
-        <hr />
-      </section>
+      {
+        seed.inspirational != "" ? (
+          <Inspirational inspirational={seed.inspirational} />
+        ) : (
+          ""
+        )
+      }
 
       <section class="taglist">
         {
@@ -99,9 +99,6 @@ const { seed } = Astro.props;
     padding: var(--padd-md) 0 var(--padd-md) 0;
   }
 
-  .inspirational {
-    font-style: italic;
-  }
   .taglist {
     padding: var(--padd-md) 0 0 0;
   }
