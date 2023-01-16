@@ -1,17 +1,35 @@
 ---
 import Frontpage from "../layouts/Frontpage.astro";
+import { getSeeds } from "../config_pocketbase";
+
+const seeds = await getSeeds();
 ---
 
-<Frontpage title="Home" desc="Übersicht" bc_page="Home">
+<Frontpage title="Seeds" desc="Übersicht" bc_page="Seeds">
   <div slot="main">
-    <h2>Seeds - Leben fördern</h2>
-    <p>Dies ist eine experimentelle Entwicklungsseite.</p>
-    <h2>Übersichtsseiten</h2>
-    <ul class="li"><a href="seeds">Seeds</a></ul>
-    <ul class="li"><a href="environments">Umgebungen</a></ul>
-    <ul class="li"><a href="plants">Pflanzen</a></ul>
-    <ul class="li"><a href="animals">Tiere</a></ul>
-    <ul class="li"><a href="principles">Design-Prinzipien</a></ul>
-    <ul class="li"><a href="authors">Autoren</a></ul>
+    <h1 style="font-size:var(--fs-md);">Welcome</h1>
+    <p>This page is experimental... under construction</p>
+    <ul>
+      {
+        seeds.map((seed) => (
+          <li>
+            <a href={"/seeds/" + seed.slug}>
+              {seed.name},{" "}
+              {seed.expand.author.firstname + " " + seed.expand.author.lastname}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <h2>Overview lists</h2>
+    <ul>
+      <li>
+        <a href="environments">Environments</a>
+        <li><a href="plants">Plants</a></li>
+        <li><a href="animals">Animals</a></li>
+        <li><a href="principles">Design Principles</a></li>
+        <li><a href="authors">Authors</a></li>
+      </li>
+    </ul>
   </div>
 </Frontpage>
