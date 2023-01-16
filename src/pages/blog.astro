@@ -11,7 +11,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 
 <Default title="Blog" desc="Posts Übersicht" bc_page="Blog">
   <div slot="main">
-    <h1>Blog Posts</h1>
+    <h1>Blog</h1>
     <ul>
       {
         posts.map((post) => (
