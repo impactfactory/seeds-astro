@@ -8,25 +8,52 @@ const { seed } = Astro.props;
   {
     seed.principles.length
       ? seed.expand.principles.map((principle: any) => (
-          <Tags label={principle.name} url={"/principles/" + principle.slug} />
+          <Tags
+            label={principle.name}
+            url={"/principles/" + principle.slug}
+            classtype="principle"
+          />
         ))
       : ""
   }{
     seed.animals.length
       ? seed.expand.animals.map((animal: any) => (
-          <Tags label={animal.name} url={"/animals/" + animal.slug} />
+          <Tags
+            label={animal.name}
+            url={"/animals/" + animal.slug}
+            classtype="animal"
+          />
         ))
       : ""
   }{
     seed.plants.length
       ? seed.expand.plants.map((plant: any) => (
-          <Tags label={plant.name} url={"/plants/" + plant.slug} />
+          <Tags
+            label={plant.name}
+            url={"/plants/" + plant.slug}
+            classtype="plant"
+          />
         ))
       : ""
   }{
     seed.environments.length
       ? seed.expand.environments.map((env: any) => (
-          <Tags label={env.name} url={"/environments/" + env.slug} />
+          <Tags
+            label={env.name}
+            url={"/environments/" + env.slug}
+            classtype="environment"
+          />
+        ))
+      : ""
+  }
+  {
+    seed.synonyms.length
+      ? seed.expand.synonyms.map((syn: any) => (
+          <Tags
+            label={syn.name}
+            url={"/synonyms/" + syn.slug}
+            classtype="synonym"
+          />
         ))
       : ""
   }

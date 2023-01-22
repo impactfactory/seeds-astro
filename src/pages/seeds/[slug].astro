@@ -7,6 +7,7 @@ import { getSeeds, filePath, filePathAuthors } from "../../config_pocketbase";
 import Gallery from "../../components/SeedDetail/Gallery.astro";
 import HowTo from "../../components/SeedDetail/HowTo.astro";
 import Inspirational from "../../components/SeedDetail/Inspirational.astro";
+import Linklist from "../../components/SeedDetail/Linklist.astro";
 import TagsList from "../../components/SeedDetail/TagsList.astro";
 
 // create all the routes with specific detail page props
@@ -85,12 +86,14 @@ const { seed } = Astro.props;
         seed.animals.length ||
         seed.environments.length ||
         seed.plants.length ||
-        seed.principles.length ? (
+        seed.principles.length ||
+        seed.synonyms.length ? (
           <TagsList seed={seed} />
         ) : (
           ""
         )
       }
+      {seed.links.length ? <Linklist seed={seed} /> : ""}
     </article>
   </div>
 </Default>

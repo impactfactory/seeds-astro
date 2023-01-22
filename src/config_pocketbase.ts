@@ -60,7 +60,7 @@ export const getSeeds = async () => {
   return await pb.collection("seeds").getFullList(200, {
     sort: "-created",
     expand:
-      "animals, author, environments, plants, principles, steps, steps.subs",
+      "animals, author, environments, links, plants, principles, steps, steps.subs, synonyms, videos",
   });
 };
 

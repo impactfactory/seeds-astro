@@ -1,0 +1,18 @@
+---
+import Link from "./Link.astro";
+
+const { seed } = Astro.props;
+---
+
+<section>
+  <h2>Weiterführendes</h2>
+  <ul>
+    {
+      seed.expand.links.map((link: string) => (
+        <li class="link">
+          <Link link={link} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
