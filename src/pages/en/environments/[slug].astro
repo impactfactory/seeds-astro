@@ -1,0 +1,37 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getEnvironments } from "../../config_pocketbase";
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+  return (await getEnvironments()).map((env) => ({
+    params: {
+      slug: env.slug,
+    },
+    props: {
+      env,
+    },
+  }));
+}
+
+interface Props {
+  env: any;
+}
+
+const { env } = Astro.props;
+---
+
+<Default
+  title={env.name}
+  desc={env.desc}
+  bc_cat="environments"
+  bc_catname="Ökosysteme"
+  bc_page={env.name}
+>
+  <div slot="main">
+    <article>
+      <h1 class="title">{env.name}</h1>
+      <p>{env.desc}</p>
+    </article>
+  </div>
+</Default>

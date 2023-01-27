@@ -1,0 +1,109 @@
+---
+import AuthorThumb from "../../../components/Elements/AuthorThumb.astro";
+import Default from "../../../layouts/Default.astro";
+import DescShort from "../../../components/SeedDetail/DescShort.astro";
+import DetailVisual from "../../../components/Elements/DetailVisual.astro";
+import {
+  getSeeds,
+  filePath,
+  filePathAuthors,
+} from "../../../config_pocketbase";
+import Gallery from "../../../components/SeedDetail/Gallery.astro";
+import HowTo from "../../../components/SeedDetail/HowTo.astro";
+import Inspirational from "../../../components/SeedDetail/Inspirational.astro";
+import Linklist from "../../../components/SeedDetail/Linklist.astro";
+import TagsList from "../../../components/SeedDetail/TagsList.astro";
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+  return (await getSeeds()).map((seed) => ({
+    params: {
+      slug: seed.slug,
+    },
+    props: {
+      seed,
+    },
+  }));
+}
+
+interface Props {
+  seed: any;
+}
+
+const { seed } = Astro.props;
+---
+
+<Default
+  title={seed.name}
+  desc={seed.desc_short}
+  bc_cat="seeds"
+  bc_catname="Seeds"
+  bc_page={seed.name}
+>
+  <div slot="main">
+    <article class="seeddetail">
+      <h1>{seed.name}</h1>
+
+      {
+        seed.img ? (
+          <>
+            <DetailVisual
+              name={seed.name}
+              pathfunction={filePath(seed, "img")}
+            />
+            <AuthorThumb
+              author={seed.expand.author}
+              pathfunction={filePathAuthors(seed.expand.author, "img")}
+            />
+          </>
+        ) : (
+          ""
+        )
+      }
+
+      {seed.desc_short != "" ? <DescShort desc={seed.desc_short} /> : ""}
+
+      {
+        seed.steps.length ? (
+          <HowTo
+            steps={seed.expand.steps}
+            costs={seed.costs}
+            time={seed.time}
+            materials={seed.materials}
+            tools={seed.tools}
+          />
+        ) : (
+          ""
+        )
+      }
+
+      {seed.gallery.length ? <Gallery images={seed.gallery} seed={seed} /> : ""}
+
+      {
+        seed.inspirational != "" ? (
+          <Inspirational inspirational={seed.inspirational} />
+        ) : (
+          ""
+        )
+      }
+      {
+        seed.animals.length ||
+        seed.environments.length ||
+        seed.plants.length ||
+        seed.principles.length ||
+        seed.synonyms.length ? (
+          <TagsList seed={seed} />
+        ) : (
+          ""
+        )
+      }
+      {seed.links.length ? <Linklist seed={seed} /> : ""}
+    </article>
+  </div>
+</Default>
+
+<style>
+  h1 {
+    margin: 0 0 0 0;
+  }
+</style>

@@ -70,3 +70,11 @@ export const filePath = (seed: any, name: string) =>
 //Calls for Steps
 export const filePathSteps = (step: any, title: string) =>
   `${baseUrl}/api/files/${step.collectionId}/${step.id}/${step[title]}`;
+
+/* Calls for Translations
+export const getTranslations = async () => {
+  return await pb.collection("translations").getFullList(200, {
+    sort: "+key",
+  });
+};
+*/

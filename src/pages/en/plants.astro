@@ -1,0 +1,23 @@
+---
+import Default from "../layouts/Default.astro";
+import { getPlants } from "../config_pocketbase";
+
+const plants = await getPlants();
+---
+
+<Default title="Pflanzen" desc="Übersicht" bc_page="Pflanzen">
+  <div slot="main">
+    <h1>Pflanzen</h1>
+    <section>
+      <ul>
+        {
+          plants.map((plant) => (
+            <li>
+              <a href={"/plants/" + plant.slug}>{plant.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

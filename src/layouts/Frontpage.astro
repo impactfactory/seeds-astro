@@ -4,14 +4,17 @@ import Breadcrumbs from "../components/Elements/Breadcrumbs/Breadcrumbs.astro";
 import Footer from "../components/Footer/Footer.astro";
 import Facebook from "../components/Meta/Facebook.astro";
 import Favicons from "../components/Meta/Favicons.astro";
+//import { getTranslations } from "../config_pocketbase";
 import Header from "../components/Header/Header.astro";
 import Linkrel from "../components/Meta/Linkrel.astro";
 import Metas from "../components/Meta/Metas.astro";
-import site from "../data/site.json";
+import { site } from "../data/site";
 import Twitter from "../components/Meta/Twitter.astro";
 import "../styles/custom.scss";
 
-const { desc, title } = Astro.props;
+//const trans = await getTranslations();
+
+const { desc, title, trans } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,14 +27,14 @@ const { desc, title } = Astro.props;
     <Facebook site={site} title={title} desc={desc} />
     <Twitter site={site} title={title} desc={desc} />
     <Favicons site={site} />
-    <Adsense />
+    <!--<Adsense />-->
   </head>
   <body>
-    <Header />
+    <Header trans={trans.header} />
     <main class="indent-me">
       <slot name="main" />
     </main>
-    <Footer />
+    <Footer trans={trans.footer} />
     <slot name="json" />
   </body>
 </html>

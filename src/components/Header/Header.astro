@@ -1,13 +1,15 @@
 ---
 import Logo from "../svg/Logo.astro";
 import HeaderLink from "./HeaderLink.astro";
+
+const { trans } = Astro.props;
 ---
 
 <header>
   <div class="indent-me navbar">
     <a href="/"><Logo /></a>
     <nav>
-      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/blog">{trans.blog}</HeaderLink>
     </nav>
   </div>
 </header>

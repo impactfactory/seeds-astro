@@ -1,0 +1,25 @@
+---
+import Default from "../layouts/Default.astro";
+import { getAuthors } from "../config_pocketbase";
+
+const authors = await getAuthors();
+---
+
+<Default title="Autoren" desc="Übersicht" bc_page="Autoren">
+  <div slot="main">
+    <h1>Autoren</h1>
+    <section>
+      <ul>
+        {
+          authors.map((author) => (
+            <li>
+              <a href={"/authors/" + author.slug}>
+                {author.firstname} {author.lastname}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

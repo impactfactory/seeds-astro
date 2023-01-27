@@ -1,0 +1,47 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getAuthors, filePathAuthors } from "../../config_pocketbase";
+import DetailVisual from "../../components/Elements/DetailVisual.astro";
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+  return (await getAuthors()).map((author) => ({
+    params: {
+      slug: author.slug,
+    },
+    props: {
+      author,
+    },
+  }));
+}
+
+interface Props {
+  author: any;
+}
+
+const { author } = Astro.props;
+---
+
+<Default
+  title={author.name}
+  desc={author.desc}
+  bc_cat="authors"
+  bc_catname="Autoren"
+  bc_page={author.firstname + " " + author.lastname}
+>
+  <div slot="main">
+    <article>
+      <h1 class="title">{author.firstname + " " + author.lastname}</h1>
+
+      <DetailVisual
+        name={author.firstname + author.lastname}
+        pathfunction={filePathAuthors(author, "img")}
+      />
+
+      <p>{author.desc}</p>
+
+      <!--
+        <slot />-->
+    </article>
+  </div>
+</Default>

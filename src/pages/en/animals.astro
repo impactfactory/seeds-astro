@@ -1,0 +1,23 @@
+---
+import Default from "../layouts/Default.astro";
+import { getAnimals } from "../config_pocketbase";
+
+const animals = await getAnimals();
+---
+
+<Default title="Tiere" desc="Übersicht" bc_page="Tiere">
+  <div slot="main">
+    <h1>Tiere</h1>
+    <section>
+      <ul>
+        {
+          animals.map((animal) => (
+            <li>
+              <a href={"/animals/" + animal.slug}>{animal.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

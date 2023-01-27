@@ -8,6 +8,7 @@ import Header from "../components/Header/Header.astro";
 import Linkrel from "../components/Meta/Linkrel.astro";
 import Metas from "../components/Meta/Metas.astro";
 import site from "../data/site.json";
+import lang from "../data/lang.json";
 import Twitter from "../components/Meta/Twitter.astro";
 import "../styles/custom.scss";
 
@@ -32,7 +33,7 @@ const { bc_cat, bc_catname, bc_page, desc, title } = Astro.props;
       <Breadcrumbs cat={bc_cat} cat_name={bc_catname} page_name={bc_page} />
       <slot name="main" />
     </main>
-    <Footer />
+    <Footer _={lang.footer} />
     <slot name="json" />
   </body>
 </html>

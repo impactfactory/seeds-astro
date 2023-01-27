@@ -1,0 +1,23 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getEnvironments } from "../../config_pocketbase";
+
+const envs = await getEnvironments();
+---
+
+<Default title="Ökosysteme" desc="Übersicht" bc_page="Ökosysteme">
+  <div slot="main">
+    <h1>Ökosysteme</h1>
+    <section>
+      <ul>
+        {
+          envs.map((env) => (
+            <li>
+              <a href={"environments/" + env.slug}>{env.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

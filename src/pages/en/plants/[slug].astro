@@ -1,0 +1,37 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getPlants, filePathPlants } from "../../config_pocketbase";
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+  return (await getPlants()).map((plant) => ({
+    params: {
+      slug: plant.slug,
+    },
+    props: {
+      plant,
+    },
+  }));
+}
+
+interface Props {
+  plant: any;
+}
+
+const { plant } = Astro.props;
+---
+
+<Default
+  title={plant.name}
+  desc={plant.desc}
+  bc_cat="plants"
+  bc_catname="Pflanzen"
+  bc_page={plant.name}
+>
+  <div slot="main">
+    <article>
+      <h1 class="title">{plant.name}</h1>
+      <p>{plant.desc}</p>
+    </article>
+  </div>
+</Default>
