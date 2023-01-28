@@ -2,14 +2,14 @@
 import Logo from "../svg/Logo.astro";
 import HeaderLink from "./HeaderLink.astro";
 
-const { trans } = Astro.props;
+const { t } = Astro.props;
 ---
 
 <header>
   <div class="indent-me navbar">
     <a href="/"><Logo /></a>
     <nav>
-      <HeaderLink href="/blog">{trans.blog}</HeaderLink>
+      <HeaderLink href={"../" + t.blog.slug}>{t.blog.name}</HeaderLink>
     </nav>
   </div>
 </header>

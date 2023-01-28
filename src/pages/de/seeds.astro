@@ -1,11 +1,17 @@
 ---
-import Default from "../layouts/Default.astro";
-import { getSeeds } from "../config_pocketbase";
+import Default from "../../layouts/Default.astro";
+import { getSeeds } from "../../config_pocketbase";
+import { trans } from "../../data/lang/de";
 
 const seeds = await getSeeds();
 ---
 
-<Default title="Seeds" desc="Übersicht" bc_page="Seeds">
+<Default
+  title="Seeds"
+  desc="Übersicht"
+  bc_page="Seeds"
+  trans={trans.components}
+>
   <div slot="main">
     <h1>Seeds</h1>
     <ul>

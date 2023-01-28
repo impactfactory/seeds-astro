@@ -1,0 +1,24 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getPlants } from "../../config_pocketbase";
+import { t } from "../../data/lang/de/0";
+
+const plants = await getPlants();
+---
+
+<Default title={t.pages.plants.name} desc={t.pages.plants.desc} t={t}>
+  <div slot="main">
+    <h1>{t.pages.plants.name}</h1>
+    <section>
+      <ul>
+        {
+          plants.map((plant) => (
+            <li>
+              <a href={t.pages.plants.slug + "/" + plant.slug}>{plant.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

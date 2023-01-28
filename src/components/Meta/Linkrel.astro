@@ -1,12 +1,22 @@
 ---
-const { site } = Astro.props;
-const urlDe = site.url + "/de";
-const urlEn = site.url + "/en";
+const { site, t } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentLocale = t.locale;
 ---
 
 <link rel="canonical" href={canonicalURL} />
-<!--
-    <link rel="alternate" hreflang="en" href={urlEn} />
-<link rel="alternate" hreflang="de" href={urlDe} />
--->
+<link rel="alternate" hreflang={currentLocale} href={canonicalURL} />
+
+{
+  site.languages.map((lang) =>
+    lang.locale != currentLocale ? (
+      <link
+        rel="alternate"
+        hreflang={lang.locale}
+        href={site.url + "/" + lang.locale + "/" + "get-slug"}
+      />
+    ) : (
+      ""
+    )
+  )
+}

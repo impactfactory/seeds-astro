@@ -1,13 +1,13 @@
 ---
 const today = new Date();
-const { trans } = Astro.props;
+const { t } = Astro.props;
 ---
 
 <footer>
   <div class="indent-me">
-    <a href="imprint">{trans.imprint}</a> |
-    <a href="data-protection">{trans.dataprotection}</a> |
-    <a href="https://impactfactory.ch">{trans.concept}</a>. &copy; {
+    <a href={t.imprint.slug}>{t.imprint.name}</a> |
+    <a href={t.dataprotection.slug}>{t.dataprotection.name}</a> |
+    <a href={t.impactfactory.slug}>{t.impactfactory.name}</a>. &copy; {
       today.getFullYear()
     }
   </div>

@@ -1,6 +1,7 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { getAnimals, filePathAnimals } from "../../config_pocketbase";
+import Default from "../../../layouts/Default.astro";
+import { getAnimals, filePathAnimals } from "../../../config_pocketbase";
+import { t } from "../../../data/lang/de/0";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -24,9 +25,9 @@ const { animal } = Astro.props;
 <Default
   title={animal.name}
   desc={animal.desc}
-  bc_cat="animals"
-  bc_catname="Tiere"
-  bc_page={animal.name}
+  bc_cat={t.pages.animals.slug}
+  bc_catname={t.pages.animals.name}
+  t={t}
 >
   <div slot="main">
     <article>

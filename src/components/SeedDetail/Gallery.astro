@@ -3,14 +3,14 @@ import { Picture } from "@astrojs/image/components";
 import { baseUrl } from "../../config_pocketbase";
 import GalleryLightbox from "./GalleryLightbox.astro";
 
-const { images, seed } = Astro.props;
+const { images, seed, t } = Astro.props;
 const { numberOfImages } = images.length;
 
 const src = baseUrl + "/api/files/" + seed.collectionId + "/" + seed.id + "/";
 ---
 
 <section class="gallery" id="gallery">
-  <h2>Impressionen</h2>
+  <h2>{t.title}</h2>
   <ul class="lb-album">
     {
       images.map((image: string, index) => (

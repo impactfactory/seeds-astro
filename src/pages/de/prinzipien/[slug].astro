@@ -1,6 +1,7 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { getPrinciples, filePathPrinciples } from "../../config_pocketbase";
+import Default from "../../../layouts/Default.astro";
+import { getPrinciples, filePathPrinciples } from "../../../config_pocketbase";
+import { t } from "../../../data/lang/de/0";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -24,9 +25,9 @@ const { principle } = Astro.props;
 <Default
   title={principle.name}
   desc={principle.desc}
-  bc_cat="principles"
-  bc_catname="Prinzipien"
-  bc_page={principle.name}
+  bc_cat={t.pages.principles.slug}
+  bc_catname={t.pages.principles.name}
+  t={t}
 >
   <div slot="main">
     <article>

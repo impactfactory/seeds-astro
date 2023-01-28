@@ -1,18 +1,12 @@
 ---
 import Frontpage from "../../layouts/Frontpage.astro";
 import { getSeeds } from "../../config_pocketbase";
-import { trans } from "../../data/lang/de";
+import { t } from "../../data/lang/de/0";
 
 const seeds = await getSeeds();
-const local = "de";
 ---
 
-<Frontpage
-  title="Seeds"
-  desc="Übersicht"
-  bc_page="Seeds"
-  trans={trans.components}
->
+<Frontpage title={t.pages.frontpage.name} desc={t.pages.frontpage.desc} t={t}>
   <div slot="main">
     <h1 style="font-size:var(--fs-md);">Welcome</h1>
     <p>This page is experimental... under construction</p>
@@ -20,7 +14,7 @@ const local = "de";
       {
         seeds.map((seed) => (
           <li>
-            <a href={"/de/seeds/" + seed.slug}>
+            <a href={t.pages.seeds.slug + "/" + seed.slug}>
               {seed.name},{" "}
               {seed.expand.author.firstname + " " + seed.expand.author.lastname}
             </a>
@@ -31,28 +25,18 @@ const local = "de";
     <h2>Overview lists</h2>
     <ul>
       <li>
-        <a href={"/" + local + "/" + trans.contents.environments.slug}
-          >{trans.contents.environments.name}</a
-        >
+        <a href={t.pages.environments.slug}>{t.pages.environments.name}</a>
         <li>
-          <a href={"/" + local + "/" + trans.contents.plants.slug}
-            >{trans.contents.plants.name}</a
-          >
+          <a href={t.pages.plants.slug}>{t.pages.plants.name}</a>
         </li>
         <li>
-          <a href={"/" + local + "/" + trans.contents.animals.slug}
-            >{trans.contents.animals.name}</a
-          >
+          <a href={t.pages.animals.slug}>{t.pages.animals.name}</a>
         </li>
         <li>
-          <a href={"/" + local + "/" + trans.contents.principles.slug}
-            >{trans.contents.principles.name}</a
-          >
+          <a href={t.pages.principles.slug}>{t.pages.principles.name}</a>
         </li>
         <li>
-          <a href={"/" + local + "/" + trans.contents.authors.slug}
-            >{trans.contents.authors.name}</a
-          >
+          <a href={t.pages.authors.slug}>{t.pages.authors.name}</a>
         </li>
       </li>
     </ul>

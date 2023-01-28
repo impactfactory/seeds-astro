@@ -1,7 +1,8 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { getAuthors, filePathAuthors } from "../../config_pocketbase";
-import DetailVisual from "../../components/Elements/DetailVisual.astro";
+import Default from "../../../layouts/Default.astro";
+import { getAuthors, filePathAuthors } from "../../../config_pocketbase";
+import DetailVisual from "../../../components/Elements/DetailVisual.astro";
+import { t } from "../../../data/lang/de/0";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
@@ -23,11 +24,11 @@ const { author } = Astro.props;
 ---
 
 <Default
-  title={author.name}
+  title={author.firstname + " " + author.lastname}
   desc={author.desc}
-  bc_cat="authors"
-  bc_catname="Autoren"
-  bc_page={author.firstname + " " + author.lastname}
+  bc_cat={t.pages.authors.slug}
+  bc_catname={t.pages.authors.name}
+  t={t}
 >
   <div slot="main">
     <article>
@@ -39,9 +40,6 @@ const { author } = Astro.props;
       />
 
       <p>{author.desc}</p>
-
-      <!--
-        <slot />-->
     </article>
   </div>
 </Default>

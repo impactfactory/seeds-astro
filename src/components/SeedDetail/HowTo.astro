@@ -3,40 +3,40 @@ import { Icon } from "astro-icon";
 //import { filePathSteps } from "../../config_pocketbase";
 import Steps from "./Steps.astro";
 
-const { costs, materials, steps, time, tools } = Astro.props;
+const { costs, materials, steps, t, time, tools } = Astro.props;
 ---
 
 <section class="howto">
-  <h2>Anleitung</h2>
+  <h2>{t.title}</h2>
 
   <div class="prep">
     <ul class="">
-      <h3>Vorbereitung</h3>
+      <h3>{t.preparation}</h3>
       <li>
         <Icon name="mdi:book-check-outline" />
-        Benötigte Materialien: {materials}
+        {t.materials}: {materials}
       </li>
       <li>
         <Icon name="mdi:tools" />
-        Benötigte Werkzeuge:
+        {t.tools}:
         {tools}
       </li>
 
       <li>
         <Icon name="mdi:wallet" />
-        Kosten:
+        {t.costs}:
         {costs} CHF
       </li>
 
       <li>
         <Icon name="mdi:clock-time-eight" />
-        Benötigte Zeit:
+        {t.time}:
         {time} Stunden
       </li>
     </ul>
   </div>
   <div class="steps">
-    <h3>Schritte</h3>
+    <h3>{t.steps}</h3>
 
     {steps.map((step, index) => <Steps step={step} index={index} />)}
   </div>

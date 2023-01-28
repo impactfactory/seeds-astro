@@ -7,12 +7,11 @@ import Favicons from "../components/Meta/Favicons.astro";
 import Header from "../components/Header/Header.astro";
 import Linkrel from "../components/Meta/Linkrel.astro";
 import Metas from "../components/Meta/Metas.astro";
-import site from "../data/site.json";
-import lang from "../data/lang.json";
+import { site } from "../data/site";
 import Twitter from "../components/Meta/Twitter.astro";
 import "../styles/custom.scss";
 
-const { bc_cat, bc_catname, bc_page, desc, title } = Astro.props;
+const { bc_cat, bc_catname, desc, t, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,20 +19,20 @@ const { bc_cat, bc_catname, bc_page, desc, title } = Astro.props;
   <head>
     <Metas site={site} title={title} desc={desc} />
     <!--<Preconnect /> -->
-    <Linkrel site={site} />
+    <Linkrel site={site} t={t} />
     <title>{title + site.name}</title>
     <Facebook site={site} title={title} desc={desc} />
     <Twitter site={site} title={title} desc={desc} />
     <Favicons site={site} />
-    <Adsense />
+    <!--<Adsense />-->
   </head>
   <body>
-    <Header />
+    <Header t={t.pages} />
     <main class="indent-me">
-      <Breadcrumbs cat={bc_cat} cat_name={bc_catname} page_name={bc_page} />
+      <Breadcrumbs cat={bc_cat} cat_name={bc_catname} />
       <slot name="main" />
     </main>
-    <Footer _={lang.footer} />
+    <Footer t={t.pages} />
     <slot name="json" />
   </body>
 </html>
