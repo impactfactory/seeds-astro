@@ -1,0 +1,26 @@
+{
+  "frontpage": {
+    "intro": "This is an experimental site - come back later.",
+    "lists": "Overview Lists",
+    "title": "Welcome"
+  },
+  "mainnavi": {
+    "blog": "Blog"
+  },
+  "routes": {
+    "animals": "Animals",
+    "authors": "Authors",
+    "environments": "Environments",
+    "plants": "Plants",
+    "principles": "Principles"
+  },
+  "site": {
+    "author": "ImpactFactory Kai Pulfer",
+    "copyright": "ImpactFactory Kai Pulfer",
+    "description": "1001 things you can do to support Life on Earth",
+    "name": "Seeds",
+    "preview": "preview_en.jpg",
+    "postfix": " :: Seeds",
+    "title": "Promoting Biodiversity"
+  }
+}

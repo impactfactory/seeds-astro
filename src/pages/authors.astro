@@ -1,0 +1,29 @@
+---
+import { changeLanguage } from "i18next";
+import Default from "../../layouts/Default.astro";
+import { getAuthors } from "../../config_pocketbase";
+import { t } from "../../data/lang/de/0";
+
+changeLanguage("en");
+
+const authors = await getAuthors();
+---
+
+<Default title={t.pages.authors.name} desc={t.pages.authors.desc} t={t}>
+  <div slot="main">
+    <h1>{t.pages.authors.name}</h1>
+    <section>
+      <ul>
+        {
+          authors.map((author) => (
+            <li>
+              <a href={t.pages.authors.slug + "/" + author.slug}>
+                {author.firstname} {author.lastname}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

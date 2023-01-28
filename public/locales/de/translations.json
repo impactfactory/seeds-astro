@@ -1,0 +1,26 @@
+{
+  "frontpage": {
+    "intro": "Dies ist eine Seite im experimentellen Aufbau - Komm doch später wieder mal.",
+    "lists": "Übersichts-Listen",
+    "title": "Willkommen"
+  },
+  "mainnavi": {
+    "blog": "Blog"
+  },
+  "routes": {
+    "animals": "Tiere",
+    "authors": "Autoren",
+    "environments": "Ökosysteme",
+    "plants": "Pflanzen",
+    "principles": "Prinzipien"
+  },
+  "site": {
+    "author": "ImpactFactory Kai Pulfer",
+    "copyright": "ImpactFactory Kai Pulfer",
+    "description": "1001 Dinge, die Du tun kannst, um alles lebendige zu fördern.",
+    "name": "Seeds",
+    "preview": "preview_de.jpg",
+    "postfix": " :: Seeds",
+    "title": "Artenvielfalt fördern"
+  }
+}

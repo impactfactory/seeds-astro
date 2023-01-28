@@ -1,20 +1,23 @@
 ---
 import Frontpage from "../../layouts/Frontpage.astro";
 import { getSeeds } from "../../config_pocketbase";
-import { t } from "../../data/lang/de/0";
+import i18next, { t, changeLanguage } from "i18next";
+import { localizePath } from "astro-i18next";
+
+changeLanguage("de");
 
 const seeds = await getSeeds();
 ---
 
-<Frontpage title={t.pages.frontpage.name} desc={t.pages.frontpage.desc} t={t}>
+<Frontpage title={t("site.title")} desc={t("site.description")}>
   <div slot="main">
-    <h1 style="font-size:var(--fs-md);">Welcome</h1>
-    <p>This page is experimental... under construction</p>
+    <h1>{t("frontpage.title")}</h1>
+    <p>{t("frontpage.intro")}</p>
     <ul>
       {
         seeds.map((seed) => (
           <li>
-            <a href={t.pages.seeds.slug + "/" + seed.slug}>
+            <a href={localizePath("/seeds") + "/" + seed.slug}>
               {seed.name},{" "}
               {seed.expand.author.firstname + " " + seed.expand.author.lastname}
             </a>
@@ -22,21 +25,22 @@ const seeds = await getSeeds();
         ))
       }
     </ul>
-    <h2>Overview lists</h2>
+
+    <h2>{t("frontpage.lists")}</h2>
     <ul>
       <li>
-        <a href={t.pages.environments.slug}>{t.pages.environments.name}</a>
+        <a href={localizePath("/environments")}>{t("routes.environments")}</a>
         <li>
-          <a href={t.pages.plants.slug}>{t.pages.plants.name}</a>
+          <a href={localizePath("/plants")}>{t("routes.plants")}</a>
         </li>
         <li>
-          <a href={t.pages.animals.slug}>{t.pages.animals.name}</a>
+          <a href={localizePath("/animals")}>{t("routes.animals")}</a>
         </li>
         <li>
-          <a href={t.pages.principles.slug}>{t.pages.principles.name}</a>
+          <a href={localizePath("/principles")}>{t("routes.principles")}</a>
         </li>
         <li>
-          <a href={t.pages.authors.slug}>{t.pages.authors.name}</a>
+          <a href={localizePath("/authors")}>{t("routes.authors")}</a>
         </li>
       </li>
     </ul>

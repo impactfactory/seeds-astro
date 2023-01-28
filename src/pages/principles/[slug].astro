@@ -1,0 +1,39 @@
+---
+import { changeLanguage } from "i18next";
+import Default from "../../../layouts/Default.astro";
+import { getPrinciples, filePathPrinciples } from "../../../config_pocketbase";
+import { t } from "../../../data/lang/de/0";
+
+changeLanguage("en");
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+    return (await getPrinciples()).map((principle) => ({
+        params: {
+            slug: principle.slug,
+        },
+        props: {
+            principle,
+        },
+    }));
+}
+interface Props {
+    principle: any;
+}
+const { principle } = Astro.props;
+---
+
+<Default
+  title={principle.name}
+  desc={principle.desc}
+  bc_cat={t.pages.principles.slug}
+  bc_catname={t.pages.principles.name}
+  t={t}
+>
+  <div slot="main">
+    <article>
+      <h1 class="title">{principle.name}</h1>
+      <p>{principle.desc}</p>
+    </article>
+  </div>
+</Default>

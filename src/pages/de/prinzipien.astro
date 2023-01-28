@@ -1,7 +1,10 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { getPrinciples } from "../../config_pocketbase";
-import { t } from "../../data/lang/de/0";
+import { changeLanguage } from "i18next";
+import Default from "../../../layouts/Default.astro";
+import { getPrinciples } from "../../../config_pocketbase";
+import { t } from "../../../data/lang/de/0";
+
+changeLanguage("de");
 
 const principles = await getPrinciples();
 ---

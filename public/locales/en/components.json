@@ -1,0 +1,25 @@
+{
+  "footer": {
+    "concept": "Concept & Developement: ",
+    "dataprotection": "Data Protection",
+    "impactfactory": "ImpactFactory",
+    "imprint": "Imprint"
+  },
+  "gallery": {
+    "title": "Impressions"
+  },
+  "header": {},
+  "howto": {
+    "costs": "Costs",
+    "currency": "EUR",
+    "materials": "Materiala",
+    "preparation": "Preparation",
+    "steps": "Steps",
+    "time": "Time needed",
+    "title": "Instruction",
+    "tools": "Tools"
+  },
+  "links": {
+    "title": "More to learn"
+  }
+}

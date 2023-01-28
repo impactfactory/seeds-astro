@@ -1,7 +1,10 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { getSeeds } from "../../config_pocketbase";
-import { trans } from "../../data/lang/de";
+import { changeLanguage } from "i18next";
+import Default from "../../../layouts/Default.astro";
+import { getSeeds } from "../../../config_pocketbase";
+import { trans } from "../../../data/lang/de";
+
+changeLanguage("de");
 
 const seeds = await getSeeds();
 ---

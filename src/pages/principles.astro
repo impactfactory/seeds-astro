@@ -1,0 +1,27 @@
+---
+import { changeLanguage } from "i18next";
+import Default from "../../layouts/Default.astro";
+import { getPrinciples } from "../../config_pocketbase";
+import { t } from "../../data/lang/de/0";
+
+changeLanguage("en");
+
+const principles = await getPrinciples();
+---
+
+<Default title={t.pages.principles.name} desc={t.pages.principles.desc} t={t}>
+  <div slot="main">
+    <h1>{t.pages.principles.name}</h1>
+    <ul>
+      {
+        principles.map((principle) => (
+          <li>
+            <a href={t.pages.principles.slug + "/" + principle.slug}>
+              {principle.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Default>

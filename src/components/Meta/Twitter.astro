@@ -1,11 +1,12 @@
 ---
-const { desc, site, title } = Astro.props;
+import { t } from "i18next";
+const { desc, title } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta property="twitter:card" content="summary_large_image" />
 <meta name="twitter:description" content={desc} />
-<meta name="twitter:image" content={"/images/" + site.preview_default} />
+<meta name="twitter:image" content={"/images/" + t("site.preview")} />
 <meta property="twitter:image:width" content="1200" />
 <meta property="twitter:image:height" content="630" />
 <meta property="twitter:title" content={title} />

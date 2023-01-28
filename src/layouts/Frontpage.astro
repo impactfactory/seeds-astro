@@ -4,25 +4,26 @@ import Footer from "../components/Footer/Footer.astro";
 import Facebook from "../components/Meta/Facebook.astro";
 import Favicons from "../components/Meta/Favicons.astro";
 import Header from "../components/Header/Header.astro";
+import i18next, { t } from "i18next";
 import Linkrel from "../components/Meta/Linkrel.astro";
 import Metas from "../components/Meta/Metas.astro";
 import { site } from "../data/site";
 import Twitter from "../components/Meta/Twitter.astro";
 import "../styles/custom.scss";
 
-const { desc, t, title } = Astro.props;
+const { desc, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang={i18next.language}>
   <head>
-    <Metas site={site} title={title} desc={desc} />
+    <Metas title={title} desc={desc} />
     <!--<Preconnect /> -->
-    <Linkrel site={site} t={t} />
+    <Linkrel />
     <title>{title + site.name}</title>
-    <Facebook site={site} title={title} desc={desc} />
-    <Twitter site={site} title={title} desc={desc} />
-    <Favicons site={site} />
+    <Facebook title={title} desc={desc} />
+    <Twitter title={title} desc={desc} />
+    <Favicons />
     <!--<Adsense />-->
   </head>
   <body>
@@ -30,7 +31,7 @@ const { desc, t, title } = Astro.props;
     <main class="indent-me">
       <slot name="main" />
     </main>
-    <Footer t={t.pages} />
+    <Footer />
     <slot name="json" />
   </body>
 </html>

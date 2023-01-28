@@ -1,0 +1,40 @@
+---
+import { changeLanguage } from "i18next";
+import Default from "../../../layouts/Default.astro";
+import { getAnimals, filePathAnimals } from "../../../config_pocketbase";
+import { t } from "../../../data/lang/de/0";
+
+changeLanguage("en");
+
+// create all the routes with specific detail page props
+export async function getStaticPaths() {
+    return (await getAnimals()).map((animal) => ({
+        params: {
+            slug: animal.slug,
+        },
+        props: {
+            animal,
+        },
+    }));
+}
+interface Props {
+    animal: any;
+}
+const { animal } = Astro.props;
+---
+
+<Default
+  title={animal.name}
+  desc={animal.desc}
+  bc_cat={t.pages.animals.slug}
+  bc_catname={t.pages.animals.name}
+  t={t}
+>
+  <div slot="main">
+    <article>
+      <h1 class="title">{animal.name}</h1>
+
+      <p>{animal.desc}</p>
+    </article>
+  </div>
+</Default>

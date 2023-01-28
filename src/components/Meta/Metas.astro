@@ -1,14 +1,15 @@
 ---
-const { desc, site, title } = Astro.props;
+import { t } from "i18next";
+const { desc, title } = Astro.props;
 ---
 
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width" />
 <meta name="robots" content="index, follow" />
-<meta name="title" content={title + site.name} />
+<meta name="title" content={title + t("site.postfix")} />
 <meta name="description" content={desc} />
-<meta name="author" content={site.author} />
-<meta name="copyright" content={site.copyright} />
+<meta name="author" content={t("site.author")} />
+<meta name="copyright" content={t("site.copyright")} />
 <meta name="generator" content={Astro.generator} />
-<meta name="google-site-verification" content={site.google} />
+<meta name="google-site-verification" content="" />

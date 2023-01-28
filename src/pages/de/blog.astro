@@ -1,13 +1,13 @@
 ---
-import Default from "../../layouts/Default.astro";
-import { t } from "../../data/lang/de/0";
+import { changeLanguage } from "i18next";
+import Default from "../../../layouts/Default.astro";
+import { t } from "../../../data/lang/de/0";
+
+changeLanguage("de");
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
-);
+const posts = (await Astro.glob("../blog/*.{md,mdx}")).sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf());
 ---
 
 <Default title={t.pages.blog.name} desc={t.pages.blog.desc} t={t}>

@@ -1,0 +1,26 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getAnimals } from "../../config_pocketbase";
+import { t } from "../../data/lang/de/0";
+
+const animals = await getAnimals();
+---
+
+<Default title={t.pages.animals.name} desc={t.pages.animals.desc} t={t}>
+  <div slot="main">
+    <h1>Tiere</h1>
+    <section>
+      <ul>
+        {
+          animals.map((animal) => (
+            <li>
+              <a href={t.pages.animals.slug + "/" + animal.slug}>
+                {animal.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

@@ -1,0 +1,32 @@
+---
+import Default from "../../layouts/Default.astro";
+import { getEnvironments } from "../../config_pocketbase";
+import { t } from "../../data/lang/de/0";
+
+const envs = await getEnvironments();
+---
+
+<Default
+  title={t.pages.environments.name}
+  desc={t.pages.environments.desc}
+  t={t}
+>
+  <div slot="main">
+    <h1>
+      {t.pages.environments.name}
+    </h1>
+    <section>
+      <ul>
+        {
+          envs.map((env) => (
+            <li>
+              <a href={t.pages.environments.slug + "/" + env.slug}>
+                {env.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Default>

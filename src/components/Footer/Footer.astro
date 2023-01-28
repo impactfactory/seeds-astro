@@ -1,15 +1,19 @@
 ---
+import i18next, { t } from "i18next";
+import { localizePath, localizeUrl } from "astro-i18next";
+
 const today = new Date();
-const { t } = Astro.props;
 ---
 
 <footer>
   <div class="indent-me">
-    <a href={t.imprint.slug}>{t.imprint.name}</a> |
-    <a href={t.dataprotection.slug}>{t.dataprotection.name}</a> |
-    <a href={t.impactfactory.slug}>{t.impactfactory.name}</a>. &copy; {
-      today.getFullYear()
-    }
+    <a href={localizePath("/imprint")}>{t("components:footer.imprint")}</a> |
+    <a href={localizePath("/dataprotection")}
+      >{t("components:footer.dataprotection")}</a
+    > |
+    <a href={localizeUrl("https://impactfactory.ch")}
+      >{t("components:footer.concept")}{t("components:footer.impactfactory")}</a
+    > &copy; {today.getFullYear()}
   </div>
 </footer>
 

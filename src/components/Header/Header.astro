@@ -1,16 +1,17 @@
 ---
 import Logo from "../svg/Logo.astro";
 import HeaderLink from "./HeaderLink.astro";
-import { t } from "../../data/lang/de/0";
+import i18next, { t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { LanguageSelector } from "astro-i18next/components";
 ---
 
 <header>
   <div class="indent-me navbar">
-    <a href="/"><Logo /></a>
+    <a href={localizePath("/")}><Logo /></a>
     <nav>
-      <HeaderLink href={"/" + t.locale + "/" + t.pages.blog.slug}
-        >{t.pages.blog.name}</HeaderLink
-      >
+      <HeaderLink href={localizePath("/blog")}>{t("mainnavi.blog")}</HeaderLink>
+      <LanguageSelector showFlag={false} class="my-select-class" />
     </nav>
   </div>
 </header>

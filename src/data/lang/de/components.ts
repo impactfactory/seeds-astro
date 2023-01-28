@@ -2,6 +2,7 @@ export const components = {
   footer: {
     concept: "Konzept & Entwicklung: ImpactFactory",
     dataprotection: "Datenschutz",
+    impactfactory: "ImpactFactory",
     imprint: "Impressum",
   },
   gallery: {
