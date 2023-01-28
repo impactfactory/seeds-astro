@@ -27,7 +27,7 @@ const { bc_cat, bc_catname, desc, t, title } = Astro.props;
     <!--<Adsense />-->
   </head>
   <body>
-    <Header t={t.pages} />
+    <Header />
     <main class="indent-me">
       <Breadcrumbs cat={bc_cat} cat_name={bc_catname} />
       <slot name="main" />

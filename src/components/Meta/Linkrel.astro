@@ -7,13 +7,23 @@ const currentLocale = t.locale;
 <link rel="canonical" href={canonicalURL} />
 <link rel="alternate" hreflang={currentLocale} href={canonicalURL} />
 
+<!--
+ - get current pages entry
+ - get key of that entry
+ - get slug value of same key in every language file
+ - get page slug in that language
+ - siteUrl-locale-folder-pageSlug
+-->
+
 {
   site.languages.map((lang) =>
     lang.locale != currentLocale ? (
       <link
         rel="alternate"
         hreflang={lang.locale}
-        href={site.url + "/" + lang.locale + "/" + "get-slug"}
+        href={
+          site.url + "/" + lang.locale + "/" + "folder" + "help!how-to-get-slug"
+        }
       />
     ) : (
       ""

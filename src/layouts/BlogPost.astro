@@ -1,5 +1,6 @@
 ---
 import Default from "../layouts/Default.astro";
+import { t } from "../data/lang/de/0";
 
 export interface Props {
   content: {
@@ -16,13 +17,7 @@ const {
 } = Astro.props;
 ---
 
-<Default
-  title={title}
-  desc={description}
-  bc_cat="blog"
-  bc_catname="Blog"
-  bc_page={title}
->
+<Default title={title} desc={description} bc_cat="blog" bc_catname="Blog" t={t}>
   <div slot="main">
     <article>
       <h1 class="title">{title}</h1>

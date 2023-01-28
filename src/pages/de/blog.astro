@@ -1,5 +1,6 @@
 ---
-import Default from "../layouts/Default.astro";
+import Default from "../../layouts/Default.astro";
+import { t } from "../../data/lang/de/0";
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
@@ -9,9 +10,9 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 );
 ---
 
-<Default title="Blog" desc="Posts Übersicht" bc_page="Blog">
+<Default title={t.pages.blog.name} desc={t.pages.blog.desc} t={t}>
   <div slot="main">
-    <h1>Blog</h1>
+    <h1>{t.pages.blog.name}</h1>
     <ul>
       {
         posts.map((post) => (

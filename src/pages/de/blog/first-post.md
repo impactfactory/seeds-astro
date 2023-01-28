@@ -1,5 +1,5 @@
 ---
-layout: "../../layouts/BlogPost.astro"
+layout: "../../../layouts/BlogPost.astro"
 title: "Und los geht's"
 description: "These, Idee und Vision von Seeds"
 pubDate: "Jan 16 2023"

@@ -1,15 +1,16 @@
 ---
 import Logo from "../svg/Logo.astro";
 import HeaderLink from "./HeaderLink.astro";
-
-const { t } = Astro.props;
+import { t } from "../../data/lang/de/0";
 ---
 
 <header>
   <div class="indent-me navbar">
     <a href="/"><Logo /></a>
     <nav>
-      <HeaderLink href={"../" + t.blog.slug}>{t.blog.name}</HeaderLink>
+      <HeaderLink href={"/" + t.locale + "/" + t.pages.blog.slug}
+        >{t.pages.blog.name}</HeaderLink
+      >
     </nav>
   </div>
 </header>

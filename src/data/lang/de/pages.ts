@@ -10,7 +10,7 @@ export const pages = {
     desc: "Übersicht der Autoren",
     slug: "autoren",
   },
-  blog: { name: "Blog", slug: "blog" },
+  blog: { name: "Blog", desc: "", slug: "blog" },
   dataprotection: {
     name: "Datenschutz",
     desc: "Unsere Datenschutz-Richtlinien und Massnahmen",
