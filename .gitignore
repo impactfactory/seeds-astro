@@ -10,6 +10,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# content meta data
+echo "\n.astro" >> .gitignore
 
 # environment variables
 .env
