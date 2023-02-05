@@ -3,7 +3,7 @@ import Logo from "../svg/Logo.astro";
 import HeaderLink from "./HeaderLink.astro";
 import i18next, { t } from "i18next";
 import { localizePath } from "astro-i18next";
-import { LanguageSelector } from "astro-i18next/components";
+import LanguageSelector from "./LanguageSelector.astro";
 ---
 
 <header>
@@ -11,7 +11,7 @@ import { LanguageSelector } from "astro-i18next/components";
     <a href={localizePath("/")}><Logo /></a>
     <nav>
       <HeaderLink href={localizePath("/blog")}>{t("mainnavi.blog")}</HeaderLink>
-      <LanguageSelector showFlag={false} class="my-select-class" />
+      <LanguageSelector />
     </nav>
   </div>
 </header>

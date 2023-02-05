@@ -12,6 +12,7 @@ export default {
       blog: "blog",
       dataprotection: "dataprotection",
       environments: "oekosysteme",
+      home: "home",
       imprint: "impressum",
       plants: "pflanzen",
       principles: "prinzipien",

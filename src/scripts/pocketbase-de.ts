@@ -1,10 +1,22 @@
 // Project Config
-import i18next, { changeLanguage } from "i18next";
 import PocketBase from "pocketbase";
 
 export const baseUrl = "http://127.0.0.1:8090";
 
 export const pb = new PocketBase(baseUrl);
+
+// change language filter in calls
+
+const langId = "8u5v3776kq7f1qb"; // id of language de
+
+/*
+if (i18next.language == "en") {
+  langId = "4jstf98slu3s0zo";
+}
+if (i18next.language == "de") {
+  langId = "8u5v3776kq7f1qb";
+} else {
+}*/
 
 // Calls for Animals
 export const getAnimals = async () => {
@@ -57,9 +69,9 @@ export const filePathPrinciples = (principle: any, name: string) =>
   `${baseUrl}/api/files/${principle.collectionId}/${principle.id}/${principle[name]}`;
 
 // Calls for Seeds
-export const getSeeds = async (lang = "en") => {
+export const getSeeds = async () => {
   return await pb.collection("seeds").getFullList(200, {
-    filter: `language.code = '${lang}'`,
+    filter: "language = '" + langId + "'",
     sort: "-created",
     expand:
       "animals, author, environments, language, links, plants, principles, steps, steps.subs, synonyms, videos",

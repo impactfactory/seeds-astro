@@ -1,0 +1,12 @@
+---
+import { localizePath } from "astro-i18next";
+import i18next from "i18next";
+const langItems = i18next.languages.map((language) => ({
+  code: language,
+  active: language === i18next.language,
+  href: localizePath(Astro.url.pathname, language),
+}));
+console.log(langItems);
+---
+
+<a href="">test {i18next.language}</a>

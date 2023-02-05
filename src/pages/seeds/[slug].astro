@@ -1,32 +1,30 @@
 ---
 import { changeLanguage } from "i18next";
-import AuthorThumb from "../../../components/Elements/AuthorThumb.astro";
-import Default from "../../../layouts/Default.astro";
-import DescShort from "../../../components/SeedDetail/DescShort.astro";
-import DetailVisual from "../../../components/Elements/DetailVisual.astro";
-import { getSeeds, filePath, filePathAuthors, } from "../../../config_pocketbase";
-import Gallery from "../../../components/SeedDetail/Gallery.astro";
-import HowTo from "../../../components/SeedDetail/HowTo.astro";
-import Inspirational from "../../../components/SeedDetail/Inspirational.astro";
-import Linklist from "../../../components/SeedDetail/Linklist.astro";
-import TagsList from "../../../components/SeedDetail/TagsList.astro";
-import { t } from "../../../data/lang/de/0";
-
-changeLanguage("en");
+import AuthorThumb from "@components/Elements/AuthorThumb.astro";
+import Default from "@layouts/Default.astro";
+import DescShort from "@components/SeedDetail/DescShort.astro";
+import DetailVisual from "@components/Elements/DetailVisual.astro";
+import { getSeeds, filePath, filePathAuthors } from "../../config_pocketbase";
+import Gallery from "@components/SeedDetail/Gallery.astro";
+import HowTo from "@components/SeedDetail/HowTo.astro";
+import Inspirational from "@components/SeedDetail/Inspirational.astro";
+import Linklist from "@components/SeedDetail/Linklist.astro";
+import TagsList from "@components/SeedDetail/TagsList.astro";
+import i18next, { t } from "i18next";
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
-    return (await getSeeds()).map((seed) => ({
-        params: {
-            slug: seed.slug,
-        },
-        props: {
-            seed,
-        },
-    }));
+  return (await getSeeds()).map((seed) => ({
+    params: {
+      slug: seed.slug,
+    },
+    props: {
+      seed,
+    },
+  }));
 }
 interface Props {
-    seed: any;
+  seed: any;
 }
 const { seed } = Astro.props;
 ---
@@ -60,7 +58,7 @@ const { seed } = Astro.props;
         )
       }
 
-      {seed.desc_short != "" ? <DescShort desc={seed.desc_short} /> : ""}
+      {seed.desc_short && <DescShort desc={seed.desc_short} />}
 
       {
         seed.steps.length ? (

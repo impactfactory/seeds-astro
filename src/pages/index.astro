@@ -1,48 +1,15 @@
 ---
-import Frontpage from "../layouts/Frontpage.astro";
-import { getSeeds } from "../config_pocketbase";
-import i18next, { t, changeLanguage } from "i18next";
-import { localizePath } from "astro-i18next";
+import { changeLanguage } from "i18next";
 
 changeLanguage("en");
-
-const seeds = await getSeeds();
 ---
 
-<Frontpage title={t("site.title")} desc={t("site.description")}>
-  <div slot="main">
-    <h1>{t("frontpage.title")}</h1>
-    <p>{t("frontpage.intro")}</p>
-    <ul>
-      {
-        seeds.map((seed) => (
-          <li>
-            <a href={localizePath("/seeds") + "/" + seed.slug}>
-              {seed.name},{" "}
-              {seed.expand.author.firstname + " " + seed.expand.author.lastname}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <h2>{t("frontpage.lists")}</h2>
-    <ul>
-      <li>
-        <a href={localizePath("/environments")}>{t("routes.environments")}</a>
-        <li>
-          <a href={localizePath("/plants")}>{t("routes.plants")}</a>
-        </li>
-        <li>
-          <a href={localizePath("/animals")}>{t("routes.animals")}</a>
-        </li>
-        <li>
-          <a href={localizePath("/principles")}>{t("routes.principles")}</a>
-        </li>
-        <li>
-          <a href={localizePath("/authors")}>{t("routes.authors")}</a>
-        </li>
-      </li>
-    </ul>
-  </div>
-</Frontpage>
+<script is:inline>
+  if (/^de\b/.test(navigator.language)) {
+    window.location.pathname = `/de/home`;
+    //const lang = "de";
+  } else {
+    window.location.pathname = `/home`;
+    //const lang = "en";
+  }
+</script>

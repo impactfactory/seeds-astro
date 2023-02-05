@@ -4,6 +4,7 @@ import { t as t_en } from "./lang/en/0";
 export const site = {
   author: "ImpactFactory",
   breakpoints: [280, 320, 360, 567, 640, 768, 1100],
+  calls: [],
   copyright: "ImpactFactory Kai Pulfer",
   google: "xy",
   landscapeSizes: "(max-width: 320px) 320px,(max-width: 640px) 640px,1100px",

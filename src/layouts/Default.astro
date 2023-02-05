@@ -10,12 +10,12 @@ import Metas from "../components/Meta/Metas.astro";
 import { site } from "../data/site";
 import Twitter from "../components/Meta/Twitter.astro";
 import "../styles/custom.scss";
-
+import i18next from "i18next";
 const { bc_cat, bc_catname, desc, t, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang={i18next.language}>
   <head>
     <Metas site={site} title={title} desc={desc} />
     <!--<Preconnect /> -->
