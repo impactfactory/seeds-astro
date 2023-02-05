@@ -1,25 +1,25 @@
 ---
 import { changeLanguage } from "i18next";
-import Default from "../../../layouts/Default.astro";
+import Default from "@layouts/Default.astro";
 import { getAuthors, filePathAuthors } from "../../../config_pocketbase";
-import DetailVisual from "../../../components/Elements/DetailVisual.astro";
+import DetailVisual from "@components/Elements/DetailVisual.astro";
 import { t } from "../../../data/lang/de/0";
 
 changeLanguage("en");
 
 // create all the routes with specific detail page props
 export async function getStaticPaths() {
-    return (await getAuthors()).map((author) => ({
-        params: {
-            slug: author.slug,
-        },
-        props: {
-            author,
-        },
-    }));
+  return (await getAuthors()).map((author) => ({
+    params: {
+      slug: author.slug,
+    },
+    props: {
+      author,
+    },
+  }));
 }
 interface Props {
-    author: any;
+  author: any;
 }
 const { author } = Astro.props;
 ---

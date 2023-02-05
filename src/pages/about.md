@@ -1,5 +1,5 @@
 ---
-layout: "../layouts/BlogPost.astro"
+layout: "@layouts/BlogPost.astro"
 title: "Über Seeds"
 description: "Lorem ipsum dolor sit amet"
 updatedDate: "August 08 2022"

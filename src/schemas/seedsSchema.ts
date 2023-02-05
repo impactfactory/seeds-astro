@@ -25,6 +25,6 @@ export const seedsSchema = {
     time: z.number(),
     tools: z.array(string()),
     type: z.string(),
-    videos: (),
+    videos: z.array(z.string()),
   }),
 };
